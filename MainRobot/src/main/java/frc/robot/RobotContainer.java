@@ -74,10 +74,17 @@ public class RobotContainer {
 
         // Run SysId routines when holding back/start and X/Y.
         // Note that each routine should be run exactly once in a single log.
+
         joystick.button(11).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
         joystick.button(12).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
         joystick.button(13).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
         joystick.button(14).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
+
+        joystick.button(11).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));//(Dy 11)
+        joystick.button(12).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));//Dy12
+        joystick.button(13).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));//(Qt13)
+        joystick.button(14).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));//(Qt14)
+
 
         // Reset the field-centric heading on left bumper press.
         joystick.button(97).onTrue(drivetrain.runOnce(drivetrain::seedFieldCentric));
