@@ -7,9 +7,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase{
 
-
-    //Motor Intake code begins here.
-
     // Referencing motor controller object-
     private final Spark m_motor = new Spark(0);
 

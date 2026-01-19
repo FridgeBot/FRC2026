@@ -24,6 +24,7 @@ import frc.robot.subsystems.Intake;
 public class RobotContainer {
 
     //New Intake object called using the intake class.
+
     private final Intake intakeSubsystem = new Intake();
 
 
@@ -74,11 +75,6 @@ public class RobotContainer {
 
         // Run SysId routines when holding back/start and X/Y.
         // Note that each routine should be run exactly once in a single log.
-
-        joystick.button(11).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
-        joystick.button(12).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
-        joystick.button(13).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
-        joystick.button(14).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
 
         joystick.button(11).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));//(Dy 11)
         joystick.button(12).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));//Dy12
