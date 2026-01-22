@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Intake;
-
+import frc.robot.Commands.RunIntake;
 public class RobotContainer {
 
     //New Intake object called using the intake class.
@@ -89,6 +89,7 @@ public class RobotContainer {
     
         //When button 2 is pressed, run the intake--
         joystick.button(2).onTrue(intakeSubsystem.runIntake());
+        joystick.button(1).onTrue(new RunIntake(intakeSubsystem));
         
         }
 
