@@ -89,7 +89,7 @@ public class RobotContainer {
     
         //When button 2 is pressed, run the intake--
         joystick.button(2).onTrue(intakeSubsystem.runIntake());
-        joystick.button(1).onTrue(new RunIntake(intakeSubsystem));
+        joystick.button(1).whileTrue(new RunIntake(intakeSubsystem));
         
         }
 

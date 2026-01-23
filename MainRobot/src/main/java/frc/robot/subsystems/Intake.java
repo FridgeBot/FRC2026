@@ -6,6 +6,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+// 8ft and 2.44 meters with the power given to the motors
 
 public class Intake extends SubsystemBase{
 
