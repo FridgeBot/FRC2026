@@ -11,16 +11,18 @@ public class Intake extends SubsystemBase{
 
     // Referencing motor controller object-
     private final SparkMax m_motor = new SparkMax(16, MotorType.kBrushless);
-
+    private final SparkMax s_motor = new SparkMax(17, MotorType.kBrushless);
+    //This command will run the intake of the robot. Then set to 0 speed when false.
     public Command runIntake(){
-        return startEnd(()-> m_motor.set(0.3), ()-> m_motor.set(0));
+        return startEnd(()-> s_motor.set(-1), ()-> s_motor.set(0));
 
     }
 
-
+    //methods that will run the motors.
+    //Curerently shooter can shoot successfully from 8ft and 2.44 meters.
 
     public void runMotorForward(){
-     m_motor.set(0.3);
+     m_motor.set(0.875);
     }
 
 
@@ -30,7 +32,7 @@ public class Intake extends SubsystemBase{
 
 
     public void runMotorReverse(){
-        m_motor.set(-0.3);
+        m_motor.set(-0.875);
     }
 
 

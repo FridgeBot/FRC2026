@@ -21,6 +21,7 @@ import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.Commands.RunIntake;
+import frc.robot.Commands.ShooterMech;
 public class RobotContainer {
 
     //New Intake object called using the intake class.
@@ -88,9 +89,9 @@ public class RobotContainer {
         drivetrain.registerTelemetry(logger::telemeterize);
     
         //When button 2 is pressed, run the intake--
-        joystick.button(2).onTrue(intakeSubsystem.runIntake());
-        joystick.button(1).onTrue(new RunIntake(intakeSubsystem));
-        
+        joystick.button(2).whileTrue(intakeSubsystem.runIntake());
+        joystick.button(3).whileTrue(new RunIntake(intakeSubsystem));
+         joystick.button(4).whileTrue(new ShooterMech(intakeSubsystem));
         }
 
 
@@ -112,5 +113,5 @@ public class RobotContainer {
             // Finally idle for the rest of auton
             drivetrain.applyRequest(() -> idle)
         );
-    }
+  }
 }
