@@ -22,30 +22,11 @@ public class Intake extends SubsystemBase{
     //methods that will run the motors.
     //Curerently shooter can shoot successfully from 8ft and 2.44 meters.
 
-    public void runMotorForward(){
-     m_motor.set(0.875);
-    }
+   public void m_motorSpeed(double speed){
+    m_motor.set(speed);
+   }
 
-
-    public void stopMotor(){
-        m_motor.set(0);
-    }
-
-
-    public void runMotorReverse(){
-        m_motor.set(-0.875);
-    }
-
-    public void runIndexerForward(){
-        s_motor.set(0.5);
-    }
-
-    public void stopIndexer(){
-        s_motor.set(0);
-    }
-
-    public void runIndexerReverse(){
-        s_motor.set(-0.5);
-    }
-
+   public void s_motorSpeed(double speed){
+    s_motor.set(speed);
+   }
 }
