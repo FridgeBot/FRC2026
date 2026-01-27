@@ -36,5 +36,16 @@ public class Intake extends SubsystemBase{
         m_motor.set(-0.875);
     }
 
+    public void runIndexerForward(){
+        s_motor.set(0.5);
+    }
+
+    public void stopIndexer(){
+        s_motor.set(0);
+    }
+
+    public void runIndexerReverse(){
+        s_motor.set(-0.5);
+    }
 
 }

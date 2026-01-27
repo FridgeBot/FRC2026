@@ -48,8 +48,8 @@ public class RobotContainer {
             // Drivetrain will execute this command periodically
             drivetrain.applyRequest(() ->
                 drive.withVelocityX(joystick.getRawAxis(1) * MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY(0) // Drive left with negative X (left)  :joystick.getRawAxis(0) * MaxSpeed
-                    .withRotationalRate(0) // Drive counterclockwise with negative X (left)   -joystick.getRawAxis(5) * MaxAngularRate
+                    .withVelocityY(joystick.getRawAxis(0) * MaxSpeed) // Drive left with negative X (left)  :joystick.getRawAxis(0) * MaxSpeed
+                    .withRotationalRate(-joystick.getRawAxis(5) * MaxAngularRate) // Drive counterclockwise with negative X (left)   -joystick.getRawAxis(5) * MaxAngularRate
             )
         );
 

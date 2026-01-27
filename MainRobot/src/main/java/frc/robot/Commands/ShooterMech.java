@@ -13,12 +13,12 @@ public ShooterMech(Intake shooterSubsystem){
 
 @Override
 public void execute(){
-    subSystem.runMotorForward();
+    subSystem.runIndexerReverse();
 }
 
 @Override
 public void end(boolean interrupted){
-    subSystem.stopMotor();
+    subSystem.stopIndexer();
 }
 
 
