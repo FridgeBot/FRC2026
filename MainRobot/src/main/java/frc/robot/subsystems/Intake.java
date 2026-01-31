@@ -4,6 +4,7 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -17,6 +18,13 @@ public class Intake extends SubsystemBase{
     private final RelativeEncoder m_encoder = m_motor.getEncoder();
     private final RelativeEncoder s_Encoder = s_motor.getEncoder();
     //This command will run the intake of the robot. Then set to 0 speed when false.
+    
+    @Override
+    public void periodic() {
+        SmartDashboard.putNumber("RPM", getM_motorSpeed());
+    }
+    
+    
     public Command runIntake(){
         return startEnd(()-> s_motor.set(-1), ()-> s_motor.set(0));
 

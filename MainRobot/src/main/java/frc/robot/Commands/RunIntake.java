@@ -14,16 +14,18 @@ public class RunIntake extends Command {
     
      intakesub = intakeSubsystem; 
     }
+    
     @Override
     public void execute() {
         intakesub.m_motorSpeed(0.875);
-
+        intakesub.s_motorSpeed(0.5);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         intakesub.m_motorSpeed(0);
+        intakesub.s_motorSpeed(0);
     }
 
 

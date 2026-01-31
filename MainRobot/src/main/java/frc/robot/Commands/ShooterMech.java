@@ -13,15 +13,18 @@ public ShooterMech(Intake shooterSubsystem){
 
 @Override
 public void execute(){
-    if(subSystem.getM_motorSpeed() > 4500){
+    subSystem.m_motorSpeed(0.875);
+
+    if(subSystem.getM_motorSpeed() > 4000){
         
-        subSystem.s_motorSpeed(0.5);
+        subSystem.s_motorSpeed(-0.5);
 
     }
 }
 
 @Override
 public void end(boolean interrupted){
+    subSystem.m_motorSpeed(0);
     subSystem.s_motorSpeed(0);
 }
 
