@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -13,6 +14,8 @@ public class Intake extends SubsystemBase{
     // Referencing motor controller object-
     private final SparkMax m_motor = new SparkMax(16, MotorType.kBrushless);
     private final SparkMax s_motor = new SparkMax(17, MotorType.kBrushless);
+    private final RelativeEncoder m_encoder = m_motor.getEncoder();
+    private final RelativeEncoder s_Encoder = s_motor.getEncoder();
     //This command will run the intake of the robot. Then set to 0 speed when false.
     public Command runIntake(){
         return startEnd(()-> s_motor.set(-1), ()-> s_motor.set(0));
@@ -21,6 +24,14 @@ public class Intake extends SubsystemBase{
 
     //methods that will run the motors.
     //Curerently shooter can shoot successfully from 8ft and 2.44 meters.
+
+    public double getM_motorSpeed(){
+        return m_encoder.getVelocity();
+    }
+
+    public double getS_motorSpeed(){
+        return s_Encoder.getVelocity();
+    }
 
    public void m_motorSpeed(double speed){
     m_motor.set(speed);
