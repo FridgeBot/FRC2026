@@ -10,6 +10,7 @@ import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -23,7 +24,7 @@ import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Intake;
 
 public class RobotContainer {
-
+        private Rotation2d Rotation = Rotation2d.kZero;
         private final Intake intakeSubsystem = new Intake();
 
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -32,7 +33,6 @@ public class RobotContainer {
     /* Setting up bindings for necessary control of the swerve drive platform */
     private final SwerveRequest.FieldCentricFacingAngle driveAngle = new SwerveRequest.FieldCentricFacingAngle()
             .withHeadingPID(0,0,0) 
-            .withTargetDirection(Rotation2d.kZero)
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
 
@@ -58,9 +58,9 @@ public class RobotContainer {
         drivetrain.setDefaultCommand(
             // Drivetrain will execute this command periodically
             drivetrain.applyRequest(() ->
-                drive.withVelocityX(joystick.getRawAxis(1) * MaxSpeed) // Drive forward with negative Y (forward)
+                driveAngle.withVelocityX(joystick.getRawAxis(1) * MaxSpeed*0) // Drive forward with negative Y (forward)
                     .withVelocityY(joystick.getRawAxis(0) * MaxSpeed) // Drive left with negative X (left)  :joystick.getRawAxis(0) * MaxSpeed
-                    .withRotationalRate(-joystick.getRawAxis(5) * MaxAngularRate) // Drive counterclockwise with negative X (left)   -joystick.getRawAxis(5) * MaxAngularRate
+                    .withTargetDirection(Rotation)
             )
         );
 
