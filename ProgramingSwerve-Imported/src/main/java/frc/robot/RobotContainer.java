@@ -84,7 +84,7 @@ public class RobotContainer {
         joystick.button(14).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));//(Qt14)
 
         // reset the field-centric heading on left bumper press
-        joystick.button(97).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+        joystick.button(10).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
