@@ -17,7 +17,7 @@ public class RunIntake extends Command {
     
     @Override
     public void execute() {
-        intakesub.m_motorSpeed(0.875);
+        intakesub.m_motorSpeed(0.55);
         intakesub.s_motorSpeed(0.5);
     }
 

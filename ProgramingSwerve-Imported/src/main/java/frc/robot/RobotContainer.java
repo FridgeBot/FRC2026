@@ -32,7 +32,7 @@ public class RobotContainer {
 
     /* Setting up bindings for necessary control of the swerve drive platform */
     private final SwerveRequest.FieldCentricFacingAngle driveAngle = new SwerveRequest.FieldCentricFacingAngle()
-            .withHeadingPID(0,0,0) 
+            .withHeadingPID(0.2,0.1,0) 
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
 
@@ -57,10 +57,14 @@ public class RobotContainer {
         // and Y is defined as to the left according to WPILib convention.
         drivetrain.setDefaultCommand(
             // Drivetrain will execute this command periodically
-            drivetrain.applyRequest(() ->
-                driveAngle.withVelocityX(joystick.getRawAxis(1) * MaxSpeed*0) // Drive forward with negative Y (forward)
+            drivetrain.applyRequest(() -> 
+                // {
+                    // Rotation = Rotation.plus(Rotation2d.fromDegrees(joystick.getRawAxis(5)));
+                   drive.withVelocityX(joystick.getRawAxis(1) * MaxSpeed) // Drive forward with negative Y (forward)
                     .withVelocityY(joystick.getRawAxis(0) * MaxSpeed) // Drive left with negative X (left)  :joystick.getRawAxis(0) * MaxSpeed
-                    .withTargetDirection(Rotation)
+                    .withRotationalRate(-joystick.getRawAxis(5) * MaxAngularRate) // Drive counterclockwise with negative X (left)   -joystick.getRawAxis(5)
+                    // .withTargetDirection(Rotation);
+                // }
             )
         );
 

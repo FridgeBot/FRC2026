@@ -13,11 +13,13 @@ public ShooterMech(Intake shooterSubsystem){
 
 @Override
 public void execute(){
-    subSystem.m_motorSpeed(0.875);
-
-    if(subSystem.getM_motorSpeed() > 4000){
+    //This will control the shooter motor line 17**
+    subSystem.m_motorSpeed(0.6);
+//When the condition of the shooter motor reaches a 
+//certain limit, then this motor will be activated. 
+    if(subSystem.getM_motorSpeed() > 3200){
         
-        subSystem.s_motorSpeed(-0.5);
+        subSystem.s_motorSpeed(-0.85);
 
     }
 }
