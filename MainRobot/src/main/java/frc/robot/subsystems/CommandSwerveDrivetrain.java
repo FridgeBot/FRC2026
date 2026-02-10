@@ -20,10 +20,12 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
-
+import frc.robot.LimelightHelpers;
 import frc.robot.generated.TunerConstants.TunerSwerveDrivetrain;
 
 /**
@@ -230,8 +232,22 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return m_sysIdRoutineToApply.dynamic(direction);
     }
 
+     Field2d botpose = new Field2d();
+     Field2d estament = new Field2d();
+
+
     @Override
     public void periodic() {
+        
+     botpose.setRobotPose(LimelightHelpers.getBotPose2d_wpiBlue("limelight-limetag"));
+     estament.setRobotPose(LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight-limetag").pose);
+
+     
+     SmartDashboard.putData("Estament",estament);
+     SmartDashboard.putData("pose",botpose);
+
+
+
         /*
          * Periodically try to apply the operator perspective.
          * If we haven't applied the operator perspective before, then we should apply
