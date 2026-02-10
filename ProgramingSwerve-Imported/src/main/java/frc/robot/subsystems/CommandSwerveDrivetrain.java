@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 
 import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.Utils;
+import com.ctre.phoenix6.swerve.SwerveDrivetrain;
 import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.swerve.SwerveRequest;
@@ -71,10 +72,13 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     );
 
 
+
+
     //function for getPose
 
     public final Pose2d getPose(){
-        
+        SwerveDrivetrain.SwerveDriveState getRobotState = this.getState();
+        return getRobotState.Pose;
     }
 
 
@@ -166,7 +170,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     // Configure AutoBuilder last
     AutoBuilder.configure(
-            () -> getState(), // Robot pose supplier //or getPose instead of getState
+            () -> getPose(), // Robot pose supplier //or getPose instead of getState
             this::resetPose, // Method to reset odometry (will be called if your auto has a starting pose)
             this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
             (speeds, feedforwards) -> driveRobotRelative(speeds), // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
