@@ -248,6 +248,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     }
 
     Pose2d latestPose = new Pose2d();
+    Field2d odomotryPose = new Field2d();
 
     @Override
     public void periodic() {
@@ -255,9 +256,14 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         double FieldTimeStamps = Timer.getFPGATimestamp();
         latestPose = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight-limetag").pose;
         
-        if(LimelightHelpers.getBotPoseEstimate_wpiBlue("Limelight-limetag").tagCount>1){
+        if(LimelightHelpers.getBotPoseEstimate_wpiBlue("Limelight-limetag").tagCount >= 1){
          addVisionMeasurement(latestPose, FieldTimeStamps);
         }
+
+        odomotryPose.setRobotPose(getPose());
+
+        SmartDashboard.putData("odomotryPose",odomotryPose); 
+        SmartDashboard.putNumber("TimeStamps",FieldTimeStamps);
      
      
 
