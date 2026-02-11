@@ -76,7 +76,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     //function for getPose
 
-    public final Pose2d getPose(){
+    public final Pose2d getPose() {
         SwerveDrivetrain.SwerveDriveState getRobotState = this.getState();
         return getRobotState.Pose;
     }
