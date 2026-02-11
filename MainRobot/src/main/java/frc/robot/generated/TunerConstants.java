@@ -284,6 +284,6 @@ public class TunerConstants {
                 drivetrainConstants, odometryUpdateFrequency,
                 odometryStandardDeviation, visionStandardDeviation, modules
             );
-        }
+       }
     }
 }

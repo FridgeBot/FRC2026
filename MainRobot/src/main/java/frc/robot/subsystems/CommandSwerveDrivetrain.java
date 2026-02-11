@@ -15,6 +15,7 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -30,29 +31,15 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.LimelightHelpers;
 import frc.robot.generated.TunerConstants.TunerSwerveDrivetrain;
 
-//------------------------------------------------------------------------------------------
-// Comments Section For Code! Add Here For a to do list so everyone knows!!!!!!!!
-
-/*
- * We need to add a large method that will help us with autonomous and path planner.
- * Look at the github repo in one of the tabs on the computer with mint on it.
- * https://github.com/CrossTheRoadElec/2026-Rebuilt-CTR-Example-Robot/blob/main/src/main/java/frc/robot/subsystems/CommandSwerveDrivetrain.java#L210
- * You got this!!!! :)
- */
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------------------------------------
-
-
+//these are imported for the auto builder method--
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.config.PIDConstants;
+import com.pathplanner.lib.config.RobotConfig;
+import com.pathplanner.lib.controllers.PPHolonomicDriveController;
+//----
+//import com.ctre.phoenix6.swerve.SwerveRequest;
+//import com.ctre.phoenix6.hardware.CANcoder;
+//import com.ctre.phoenix6.hardware.TalonFX;
 
 
 
@@ -79,6 +66,53 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private final SwerveRequest.SysIdSwerveTranslation m_translationCharacterization = new SwerveRequest.SysIdSwerveTranslation();
     private final SwerveRequest.SysIdSwerveSteerGains m_steerCharacterization = new SwerveRequest.SysIdSwerveSteerGains();
     private final SwerveRequest.SysIdSwerveRotation m_rotationCharacterization = new SwerveRequest.SysIdSwerveRotation();
+//
+    private final SwerveRequest.ApplyRobotSpeeds m_pathApplyRobotSpeeds = new SwerveRequest.ApplyRobotSpeeds();
+
+    
+
+    //This method will configure the autonomous position for the robot.
+
+
+
+
+    private void configureAutoBuilder() {
+        try {
+            var config = RobotConfig.fromGUISettings();
+            AutoBuilder.configure(
+                () -> getState().Pose,   // Supplier of current robot pose
+                this::resetPose,         // Consumer for seeding pose against auto
+                () -> getState().Speeds, // Supplier of current robot speeds
+                // Consumer of ChassisSpeeds and feedforwards to drive the robot
+                (speeds, feedforwards) -> setControl(
+                    m_pathApplyRobotSpeeds.withSpeeds(ChassisSpeeds.discretize(speeds, 0.020))
+                        .withWheelForceFeedforwardsX(feedforwards.robotRelativeForcesXNewtons())
+                        .withWheelForceFeedforwardsY(feedforwards.robotRelativeForcesYNewtons())
+                ),
+                new PPHolonomicDriveController(
+                    // PID constants for translation
+                    new PIDConstants(10, 0, 0),
+                    // PID constants for rotation
+                    new PIDConstants(7, 0, 0)
+                ),
+                config,
+                // Assume the path needs to be flipped for Red vs Blue, this is normally the case
+                () -> DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Red,
+                this // Subsystem for requirements
+            );
+        } catch (Exception ex) {
+            DriverStation.reportError("Failed to load PathPlanner config and configure AutoBuilder", ex.getStackTrace());
+        }
+    }
+
+
+
+
+
+
+
+
+
 
     /*
      * SysId routine for characterizing translation. This is used to find PID gains
