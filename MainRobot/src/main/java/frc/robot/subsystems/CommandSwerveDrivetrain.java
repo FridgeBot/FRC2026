@@ -26,6 +26,32 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 
 import frc.robot.generated.TunerConstants.TunerSwerveDrivetrain;
 
+//------------------------------------------------------------------------------------------
+// Comments Section For Code! Add Here For a to do list so everyone knows!!!!!!!!
+
+/*
+ * We need to add a large method that will help us with autonomous and path planner.
+ * Look at the github repo in one of the tabs on the computer with mint on it.
+ * https://github.com/CrossTheRoadElec/2026-Rebuilt-CTR-Example-Robot/blob/main/src/main/java/frc/robot/subsystems/CommandSwerveDrivetrain.java#L210
+ * You got this!!!! :)
+ */
+
+
+
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------------------------------------
+
+
+
+
+
 /**
  * Class that extends the Phoenix 6 SwerveDrivetrain class and implements
  * Subsystem so it can easily be used in command-based projects.
@@ -263,7 +289,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             double deltaTime = currentTime - m_lastSimTime;
             m_lastSimTime = currentTime;
 
-            /* use the measured time delta, get battery voltage from WPILib */
+            /* use the measured time delta, get batterprivate final SwerveRequest.ApplyRobotSpeeds m_pathApplyRobotSpeeds = new SwerveRequest.ApplyRobotSpeeds();y voltage from WPILib */
             updateSimState(deltaTime, RobotController.getBatteryVoltage());
         });
         m_simNotifier.startPeriodic(kSimLoopPeriod);

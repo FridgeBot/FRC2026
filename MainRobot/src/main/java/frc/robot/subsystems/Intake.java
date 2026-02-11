@@ -44,4 +44,9 @@ public class Intake extends SubsystemBase{
    public void s_motorSpeed(double speed){
     s_motor.set(speed);
    }
+
+    public void set_motor(double voltage)
+    { 
+        s_motor.setVoltage(voltage);
+    } 
 }
