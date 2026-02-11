@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -232,20 +233,19 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return m_sysIdRoutineToApply.dynamic(direction);
     }
 
-     Field2d botpose = new Field2d();
-     Field2d estament = new Field2d();
-
+    Pose2d latestPose = new Pose2d();
 
     @Override
     public void periodic() {
         
-     botpose.setRobotPose(LimelightHelpers.getBotPose2d_wpiBlue("limelight-limetag"));
-     estament.setRobotPose(LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight-limetag").pose);
-
+        double FieldTimeStamps = Timer.getFPGATimestamp();
+        latestPose = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight-limetag").pose;
+        
+        if(LimelightHelpers.getBotPoseEstimate_wpiBlue("Limelight-limetag").tagCount>1){
+         addVisionMeasurement(latestPose, FieldTimeStamps);
+        }
      
-     SmartDashboard.putData("Estament",estament);
-     SmartDashboard.putData("pose",botpose);
-
+     
 
 
         /*
