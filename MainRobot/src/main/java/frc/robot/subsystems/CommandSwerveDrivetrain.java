@@ -18,6 +18,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
+import edu.wpi.first.units.DistanceUnit;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.Notifier;
@@ -309,23 +310,30 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     Pose2d latestPose = new Pose2d();
     Field2d odomotryPose = new Field2d();
+    Field2d LimelightPose = new Field2d();
 
     @Override
     public void periodic() {
-        
-        double FieldTimeStamps = Timer.getFPGATimestamp();
         latestPose = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight-limetag").pose;
-        
+        double FieldTimeStamps = Utils.getCurrentTimeSeconds();
+        if(getPose().getTranslation().getDistance(latestPose.getTranslation()) < 1){
+        super.addVisionMeasurement(latestPose, Utils.getCurrentTimeSeconds());
+        }  
+        LimelightPose.setRobotPose(latestPose);
+
         if(LimelightHelpers.getBotPoseEstimate_wpiBlue("Limelight-limetag").tagCount >= 1){
-         addVisionMeasurement(latestPose, FieldTimeStamps);
+         
         }
-
+        
         odomotryPose.setRobotPose(getPose());
-
+        SmartDashboard.putNumber("XO",getPose().getX());
+        SmartDashboard.putBoolean("filter condition", latestPose != Pose2d.kZero);
+        SmartDashboard.putData("LimelightPose",LimelightPose);
         SmartDashboard.putData("odomotryPose",odomotryPose); 
         SmartDashboard.putNumber("TimeStamps",FieldTimeStamps);
+        SmartDashboard.putNumber("tagCount", LimelightHelpers.getBotPoseEstimate_wpiBlue("Limelight-limetag").tagCount);
      
-     
+    
 
 
         /*
