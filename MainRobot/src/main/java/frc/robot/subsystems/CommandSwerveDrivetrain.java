@@ -317,7 +317,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public void periodic() {
         latestPose = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight-limetag").pose;
         double FieldTimeStamps = Utils.getCurrentTimeSeconds();
-        if(getPose().getTranslation().getDistance(latestPose.getTranslation()) < 1 && latestPose.getTranslation() != Translation2d.kZero){
+        if(getPose().getTranslation().getDistance(latestPose.getTranslation()) < 1 && latestPose.getTranslation().getDistance(Translation2d.kZero)>0.01){
         super.addVisionMeasurement(latestPose, Utils.getCurrentTimeSeconds());
         }  
         LimelightPose.setRobotPose(latestPose);
@@ -327,7 +327,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         }
         
         odomotryPose.setRobotPose(getPose());
-        SmartDashboard.putNumber("XO",getPose().getX());
+        SmartDashboard.putNumber("XO",latestPose.getX());
         SmartDashboard.putBoolean("filter condition", getPose().getTranslation().getDistance(latestPose.getTranslation()) < 1 && latestPose.getTranslation() != Translation2d.kZero);
         SmartDashboard.putData("LimelightPose",LimelightPose);
         SmartDashboard.putData("odomotryPose",odomotryPose); 

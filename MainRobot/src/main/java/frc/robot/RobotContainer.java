@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Intake;
+import frc.robot.Commands.AlineShooter;
 import frc.robot.Commands.RunIntake;
 import frc.robot.Commands.ShooterMech;
 
@@ -95,6 +96,7 @@ public class RobotContainer {
 
         joystick.button(4).whileTrue(new RunIntake(intakeSubsystem));
         joystick.button(3).whileTrue(new ShooterMech(intakeSubsystem));
+        joystick.button(2).toggleOnTrue(new AlineShooter(null, drivetrain, joystick, MaxSpeed, MaxAngularRate));
         }
 
 
