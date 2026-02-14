@@ -5,7 +5,11 @@ import java.util.concurrent.locks.Lock;
 
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import frc.robot.generated.TunerConstants;
@@ -17,17 +21,40 @@ public class AlineShooter extends Command {
     private double MaxSpeed;
     private double MaxAngularRate;
 
-    private final Pose2d tarPose2d;
+    private final Translation2d tarPosition2d;
     private final CommandJoystick DriveStick;
     private final CommandSwerveDrivetrain drivetrain;
 
+    private PIDController pidCalculator = new PIDController(0, 0, 0);
+    
+    private double p = 0;
+    private double i = 0;
+    private double d = 0;
 
-    public AlineShooter(Pose2d targetPosition, CommandSwerveDrivetrain driveTrain,CommandJoystick joystick, double maxSpeed, double maxAngularRate){
-        tarPose2d = targetPosition;
+    
+
+
+    public AlineShooter(Translation2d targetPosition, CommandSwerveDrivetrain driveTrain,CommandJoystick joystick, double maxSpeed, double maxAngularRate){
+        tarPosition2d = targetPosition;
         DriveStick = joystick;
         MaxSpeed = maxSpeed;
         MaxAngularRate = maxAngularRate;
         drivetrain = driveTrain;
+        
+        pidCalculator.enableContinuousInput(-180,180);
+        
+        Preferences.initDouble("p", p);
+        Preferences.initDouble("i", i);
+        Preferences.initDouble("d", d);
+    }
+
+    @Override
+    public void initialize() {
+        p = Preferences.getDouble("p", p);
+        i = Preferences.getDouble("i", i);
+        d = Preferences.getDouble("d", d);
+        
+        pidCalculator.setPID(p, i, d);
     }
 
     SwerveRequest.FieldCentric Lock = new SwerveRequest.FieldCentric()
@@ -38,12 +65,17 @@ public class AlineShooter extends Command {
         public void execute() {
             // TODO Auto-generated method stub
             super.execute();
-        
+            Pose2d CurrentPose = drivetrain.getPose();
+
+            Rotation2d targetAngle = CurrentPose.getTranslation().minus(tarPosition2d).getAngle();
 
             drivetrain.setControl(
-            Lock.withVelocityX(DriveStick.getRawAxis(1) * MaxSpeed)       
-                .withVelocityY(DriveStick.getRawAxis(0) * MaxSpeed)
-                    .withRotationalRate(0) 
+            Lock.withRotationalRate(pidCalculator.calculate(CurrentPose.getRotation().getDegrees(), targetAngle.getDegrees())*MaxAngularRate) 
+            .withVelocityX(0)
+            .withVelocityY(0)
+            // .withVelocityX(DriveStick.getRawAxis(1) * MaxSpeed)       
+            //     .withVelocityY(DriveStick.getRawAxis(0) * MaxSpeed)
+                    
         );
         }
 
