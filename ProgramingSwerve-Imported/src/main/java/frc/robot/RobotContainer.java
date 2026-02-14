@@ -10,7 +10,6 @@ import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -18,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.Commands.RunIntake;
+import frc.robot.Commands.ShootWithVelocityControl;
 import frc.robot.Commands.ShooterMech;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
@@ -45,6 +45,7 @@ public class RobotContainer {
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
     private final CommandJoystick joystick = new CommandJoystick(0);
+    private final CommandXboxController xboxController = new CommandXboxController(1);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
@@ -94,6 +95,12 @@ public class RobotContainer {
 
         joystick.button(4).whileTrue(new RunIntake(intakeSubsystem));
         joystick.button(3).whileTrue(new ShooterMech(intakeSubsystem));
+
+        xboxController.rightBumper().whileTrue(new ShootWithVelocityControl(intakeSubsystem));
+        xboxController.a().and(xboxController.povUp()).whileTrue(intakeSubsystem.sysIdDynamic(Direction.kForward));
+        xboxController.a().and(xboxController.povDown()).whileTrue(intakeSubsystem.sysIdDynamic(Direction.kReverse));
+        xboxController.a().and(xboxController.povLeft()).whileTrue(intakeSubsystem.sysIdQuasistatic(Direction.kForward));
+        xboxController.a().and(xboxController.povRight()).whileTrue(intakeSubsystem.sysIdQuasistatic(Direction.kReverse));
 
     }
 
