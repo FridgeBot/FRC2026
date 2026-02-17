@@ -10,6 +10,7 @@ import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -96,7 +97,7 @@ public class RobotContainer {
 
         joystick.button(4).whileTrue(new RunIntake(intakeSubsystem));
         joystick.button(3).whileTrue(new ShooterMech(intakeSubsystem));
-        joystick.button(2).toggleOnTrue(new AlineShooter(null, drivetrain, joystick, MaxSpeed, MaxAngularRate));
+        joystick.button(2).toggleOnTrue(new AlineShooter(Translation2d.kZero, drivetrain, joystick, MaxSpeed, MaxAngularRate));
         }
 
 
