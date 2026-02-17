@@ -13,6 +13,7 @@ public class RunIntake extends Command {
     public RunIntake(Intake intakeSubsystem){
     
      intakesub = intakeSubsystem; 
+     
     }
     
     @Override

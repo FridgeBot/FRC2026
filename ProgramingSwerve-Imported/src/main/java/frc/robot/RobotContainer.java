@@ -8,6 +8,7 @@ import static edu.wpi.first.units.Units.*;
 
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
+import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -51,7 +52,23 @@ public class RobotContainer {
 
     public RobotContainer() {
         configureBindings();
+
+        // Subsystem initialization
+
+
+        // Register Named Commands
+        NamedCommands.registerCommand("Shoot", new ShooterMech(intakeSubsystem));
+        NamedCommands.registerCommand("Intake", new RunIntake(intakeSubsystem));
+
+        // Do all other initialization
+        
+
+        // ...
     }
+
+
+
+
 
     private void configureBindings() {
         // Note that X is defined as forward according to WPILib convention,
