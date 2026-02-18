@@ -78,8 +78,8 @@ public class RobotContainer {
             drivetrain.applyRequest(() -> 
                 // {
                     // Rotation = Rotation.plus(Rotation2d.fromDegrees(joystick.getRawAxis(5)));
-                   drive.withVelocityX(joystick.getRawAxis(1) * MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY(joystick.getRawAxis(0) * MaxSpeed) // Drive left with negative X (left)  :joystick.getRawAxis(0) * MaxSpeed
+                   drive.withVelocityX(-joystick.getRawAxis(1) * MaxSpeed) // Drive forward with negative Y (forward)
+                    .withVelocityY(-joystick.getRawAxis(0) * MaxSpeed) // Drive left with negative X (left)  :joystick.getRawAxis(0) * MaxSpeed
                     .withRotationalRate(0*-joystick.getRawAxis(5) * MaxAngularRate) // Drive counterclockwise with negative X (left)   -joystick.getRawAxis(5)
                     // .withTargetDirection(Rotation);
                 // }
