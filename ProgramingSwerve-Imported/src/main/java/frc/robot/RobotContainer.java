@@ -24,6 +24,13 @@ import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Intake;
 
+//import for the sendable chooser system
+
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import com.pathplanner.lib.auto.AutoBuilder;
+
 public class RobotContainer {
         private Rotation2d Rotation = Rotation2d.kZero;
         private final Intake intakeSubsystem = new Intake();
@@ -45,6 +52,9 @@ public class RobotContainer {
 
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
+    private final SendableChooser<Command> autoChooser;
+    
+
     private final CommandJoystick joystick = new CommandJoystick(0);
     private final CommandXboxController xboxController = new CommandXboxController(1);
 
@@ -54,6 +64,13 @@ public class RobotContainer {
         configureBindings();
 
         // Subsystem initialization
+        autoChooser = AutoBuilder.buildAutoChooser();
+    // Another option that allows you to specify the default auto by its name
+    // autoChooser = AutoBuilder.buildAutoChooser("My Default Auto");
+
+    SmartDashboard.putData("Auto Chooser", autoChooser);
+
+
 
 
         // Register Named Commands
@@ -121,7 +138,7 @@ public class RobotContainer {
 
     }
 
-    public Command getAutonomousCommand() {
-        return Commands.print("No autonomous command configured");
-    }
+     public Command getAutonomousCommand() {
+        return autoChooser.getSelected();
+  }
 }

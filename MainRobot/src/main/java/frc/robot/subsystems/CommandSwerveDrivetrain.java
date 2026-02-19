@@ -196,6 +196,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if (Utils.isSimulation()) {
             startSimThread();
         }
+        configureAutoBuilder();
     }
 
     //method called getPose (get pose)
@@ -203,6 +204,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      public final Pose2d getPose() {
         SwerveDrivetrain.SwerveDriveState getRobotState = this.getState();
         return getRobotState.Pose;
+      
     }
 
 
@@ -234,6 +236,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if (Utils.isSimulation()) {
             startSimThread();
         }
+        configureAutoBuilder();
     }
 
     /**
@@ -274,6 +277,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if (Utils.isSimulation()) {
             startSimThread();
         }
+        configureAutoBuilder();
     }
 
     /**
@@ -285,6 +289,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      */
     public Command applyRequest(Supplier<SwerveRequest> request) {
         return run(() -> this.setControl(request.get()));
+      
     }
 
     /**

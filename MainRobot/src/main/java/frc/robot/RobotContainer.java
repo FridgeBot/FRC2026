@@ -23,6 +23,13 @@ import frc.robot.subsystems.Intake;
 import frc.robot.Commands.AlineShooter;
 import frc.robot.Commands.RunIntake;
 import frc.robot.Commands.ShooterMech;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+//import for the sendable chooser system
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import com.pathplanner.lib.auto.AutoBuilder;
+
+
 
 public class RobotContainer {
 
@@ -46,10 +53,32 @@ public class RobotContainer {
 
     private final CommandJoystick joystick = new CommandJoystick(0);
 
+     private final SendableChooser<Command> autoChooser;
+    
+
+
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
+
+
+
+   
 
     public RobotContainer() {
         configureBindings();
+
+          // Build an auto chooser. This will use Commands.none() as the default option.
+
+
+    //Does say there is an issue however build is successful.
+    //If any further analysis further comes for the issue, I "fixed" the issue using an import on lines 30. - CS
+    autoChooser = AutoBuilder.buildAutoChooser();
+    // Another option that allows you to specify the default auto by its name
+    // autoChooser = AutoBuilder.buildAutoChooser("My Default Auto");
+
+    SmartDashboard.putData("Auto Chooser", autoChooser);
+
+
+  
     }
 
     private void configureBindings() {
@@ -101,23 +130,12 @@ public class RobotContainer {
         }
 
 
+//get info from the dashboard and sets that data to the auton init function ----
 
     public Command getAutonomousCommand() {
-        // Simple drive forward auton
-        final var idle = new SwerveRequest.Idle();
-        return Commands.sequence(
-            // Reset our field centric heading to match the robot
-            // facing away from our alliance station wall (0 deg).
-            drivetrain.runOnce(() -> drivetrain.seedFieldCentric(Rotation2d.kZero)),
-            // Then slowly drive forward (away from us) for 5 seconds.
-            drivetrain.applyRequest(() ->
-                drive.withVelocityX(0.5)
-                    .withVelocityY(0)
-                    .withRotationalRate(0)
-            )
-            .withTimeout(5.0),
-            // Finally idle for the rest of auton
-            drivetrain.applyRequest(() -> idle)
-        );
+        return autoChooser.getSelected();
   }
+
+
+  
 }
