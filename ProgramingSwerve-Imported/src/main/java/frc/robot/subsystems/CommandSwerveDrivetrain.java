@@ -18,6 +18,7 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
@@ -217,6 +218,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if (Utils.isSimulation()) {
             startSimThread();
         }
+        configureAutoBuilder();
     }
 
     /**
@@ -249,6 +251,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if (Utils.isSimulation()) {
             startSimThread();
         }
+        configureAutoBuilder();
     }
 
     /**
@@ -283,19 +286,31 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return m_sysIdRoutineToApply.dynamic(direction);
     }
 
-        Field2d botpose = new Field2d();
-        Field2d estament = new Field2d();
-
+        Pose2d latestPose = new Pose2d();
+        Field2d odomotryPose = new Field2d();
+        Field2d LimelightPose = new Field2d();
+    
     @Override
     public void periodic() {
-     botpose.setRobotPose(LimelightHelpers.getBotPose2d_wpiBlue("limelight-limetag"));
-     estament.setRobotPose(LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight-limetag").pose);
+             latestPose = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight-limetag").pose;
+        double FieldTimeStamps = Utils.getCurrentTimeSeconds();
+        if(getPose().getTranslation().getDistance(latestPose.getTranslation()) < 1 && latestPose.getTranslation().getDistance(Translation2d.kZero)>0.01){
+        super.addVisionMeasurement(latestPose, Utils.getCurrentTimeSeconds());
+        }  
+        LimelightPose.setRobotPose(latestPose);
 
+        if(LimelightHelpers.getBotPoseEstimate_wpiBlue("Limelight-limetag").tagCount >= 1){
+         
+        }
+        
+        odomotryPose.setRobotPose(getPose());
+        SmartDashboard.putNumber("XO",latestPose.getX());
+        SmartDashboard.putBoolean("filter condition", getPose().getTranslation().getDistance(latestPose.getTranslation()) < 1 && latestPose.getTranslation() != Translation2d.kZero);
+        SmartDashboard.putData("LimelightPose",LimelightPose);
+        SmartDashboard.putData("odomotryPose",odomotryPose); 
+        SmartDashboard.putNumber("TimeStamps",FieldTimeStamps);
+        SmartDashboard.putNumber("tagCount", LimelightHelpers.getBotPoseEstimate_wpiBlue("Limelight-limetag").tagCount);
      
-     SmartDashboard.putData("Estament",estament);
-     SmartDashboard.putData("pose",botpose);
-        
-        
         
 
 

@@ -11,12 +11,14 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.Commands.AlineShooter;
 import frc.robot.Commands.RunIntake;
 import frc.robot.Commands.ShootWithVelocityControl;
 import frc.robot.Commands.ShooterMech;
@@ -97,7 +99,7 @@ public class RobotContainer {
                     // Rotation = Rotation.plus(Rotation2d.fromDegrees(joystick.getRawAxis(5)));
                    drive.withVelocityX(-joystick.getRawAxis(1) * MaxSpeed) // Drive forward with negative Y (forward)
                     .withVelocityY(-joystick.getRawAxis(0) * MaxSpeed) // Drive left with negative X (left)  :joystick.getRawAxis(0) * MaxSpeed
-                    .withRotationalRate(0*-joystick.getRawAxis(5) * MaxAngularRate) // Drive counterclockwise with negative X (left)   -joystick.getRawAxis(5)
+                    .withRotationalRate(-joystick.getRawAxis(5) * MaxAngularRate) // Drive counterclockwise with negative X (left)   -joystick.getRawAxis(5)
                     // .withTargetDirection(Rotation);
                 // }
             )
@@ -129,6 +131,9 @@ public class RobotContainer {
 
         joystick.button(4).whileTrue(new RunIntake(intakeSubsystem));
         joystick.button(3).whileTrue(new ShooterMech(intakeSubsystem));
+        joystick.button(2).toggleOnTrue(new AlineShooter(Translation2d.kZero, drivetrain, joystick, MaxSpeed, MaxAngularRate));
+
+
 
         xboxController.rightBumper().whileTrue(new ShootWithVelocityControl(intakeSubsystem));
         xboxController.a().and(xboxController.povUp()).whileTrue(intakeSubsystem.sysIdDynamic(Direction.kForward));
