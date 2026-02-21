@@ -5,15 +5,9 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "ShooterMech"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "FromStartToHub"
+            "pathName": "FromStartToHub1"
           }
         },
         {
