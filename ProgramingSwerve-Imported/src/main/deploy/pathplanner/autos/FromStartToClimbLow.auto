@@ -13,12 +13,6 @@
         {
           "type": "path",
           "data": {
-            "pathName": "FromStartToHub2"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
             "pathName": "FromHubToClimb"
           }
         }
