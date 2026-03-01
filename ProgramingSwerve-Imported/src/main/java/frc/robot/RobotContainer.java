@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.Commands.AlineShooter;
+import frc.robot.Commands.MoveIntake;
 import frc.robot.Commands.RunIntake;
 import frc.robot.Commands.ShootWithVelocityControl;
 import frc.robot.Commands.ShooterMech;
@@ -35,8 +36,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.pathplanner.lib.auto.AutoBuilder;
 
 public class RobotContainer {
-        private Rotation2d Rotation = Rotation2d.kZero;
+
         private final Intake intakeSubsystem = new Intake();
+        private Translation2d targetPose = new Translation2d(0,3);
 
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
     private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
@@ -130,10 +132,14 @@ public class RobotContainer {
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
+        // targetPose =  new Translation2d(4.611, 4.021);
+
+
         joystick.button(4).whileTrue(new RunIntake(intakeSubsystem));
         joystick.button(3).whileTrue(new ShooterMech(intakeSubsystem));
-        joystick.button(2).toggleOnTrue(new AlineShooter(Translation2d.kZero, drivetrain, joystick, MaxSpeed, MaxAngularRate));
-
+        joystick.button(2).toggleOnTrue(new AlineShooter(drivetrain, joystick, MaxSpeed, MaxAngularRate,2));
+        joystick.button(0).whileTrue(new MoveIntake(true,intakeSubsystem));
+        joystick.button(0).whileTrue(new MoveIntake(false,intakeSubsystem));
 
 
         xboxController.rightBumper().whileTrue(new ShootWithVelocityControl(intakeSubsystem));

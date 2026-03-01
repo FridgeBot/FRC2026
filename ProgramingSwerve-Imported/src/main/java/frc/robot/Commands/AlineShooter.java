@@ -9,7 +9,9 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -22,40 +24,56 @@ public class AlineShooter extends Command {
     private double MaxSpeed;
     private double MaxAngularRate;
 
-    private final Translation2d tarPosition2d;
+    private Translation2d tarPosition2d; 
+    
     private final CommandJoystick DriveStick;
     private final CommandSwerveDrivetrain drivetrain;
 
     private PIDController pidCalculator = new PIDController(0.015, 0, 0);
-    
-    // private double p = 0;
-    // private double i = 0;
-    // private double d = 0;
+    private PIDController ForwardController =  new PIDController(0, 0, 0);
+    private double p = 0;
+    private double i = 0;
+    private double d = 0;
+
+    private double Offset;
 
     
 
+    
 
-    public AlineShooter(Translation2d targetPosition, CommandSwerveDrivetrain driveTrain,CommandJoystick joystick, double maxSpeed, double maxAngularRate){
-        tarPosition2d = targetPosition;
+    public AlineShooter(CommandSwerveDrivetrain driveTrain,CommandJoystick joystick, double maxSpeed, double maxAngularRate,double Offset){
         DriveStick = joystick;
         MaxSpeed = maxSpeed;
         MaxAngularRate = maxAngularRate;
         drivetrain = driveTrain;
+        this.Offset = Offset;
         
         pidCalculator.enableContinuousInput(-180,180);
-        
-        // Preferences.initDouble("p", p);
-        // Preferences.initDouble("i", i);
-        // Preferences.initDouble("d", d);
+        ForwardController.setTolerance(0.02);
+
+        Preferences.initDouble("p", p);
+        Preferences.initDouble("i", i);
+        Preferences.initDouble("d", d);
     }
 
     @Override
     public void initialize() {
-        // p = Preferences.getDouble("p", p);
-        // i = Preferences.getDouble("i", i);
-        // d = Preferences.getDouble("d", d);
+        p = Preferences.getDouble("p", p);
+        i = Preferences.getDouble("i", i);
+        d = Preferences.getDouble("d", d);
         
-        // pidCalculator.setPID(p, i, d);
+         ForwardController.setPID(p, i, d);
+
+            //target poses
+        if((DriverStation.getAlliance().orElse(Alliance.Blue)) == Alliance.Blue){
+            tarPosition2d = new Translation2d(4.611, 4.021);
+        }
+        else {
+            
+            tarPosition2d = new Translation2d(11.915394, 4.021);
+
+        }
+
     }
 
     SwerveRequest.FieldCentric Lock = new SwerveRequest.FieldCentric()
@@ -70,19 +88,40 @@ public class AlineShooter extends Command {
 
             Rotation2d targetAngle = tarPosition2d.minus(CurrentPose.getTranslation()).getAngle();
 
+            double distanceFromPose = tarPosition2d.getDistance(CurrentPose.getTranslation());
+
+            double ForwardControllerOutput = -ForwardController.calculate(distanceFromPose,Offset);
+
+            double xval = ForwardControllerOutput*targetAngle.getCos();
+            double yval = ForwardControllerOutput*targetAngle.getSin();
+
+
+            double joystickXval = -DriveStick.getRawAxis(0)*targetAngle.getSin();
+            double joystickYval = -DriveStick.getRawAxis(0)*targetAngle.getCos();
+
+            int Tolerance;
+            if(ForwardController.atSetpoint()){
+                Tolerance = 0;
+            }
+            else{
+                Tolerance = 1;
+            }
+
             drivetrain.setControl(
             Lock.withRotationalRate(pidCalculator.calculate(CurrentPose.getRotation().getDegrees(), targetAngle.getDegrees())*MaxAngularRate) 
-            .withVelocityX(-DriveStick.getRawAxis(1))
-            .withVelocityY(-DriveStick.getRawAxis(0))
+            .withVelocityX(((Tolerance*xval)-joystickXval)*MaxSpeed)//-DriveStick.getRawAxis(1)
+            .withVelocityY(((Tolerance*yval)+joystickYval)*MaxSpeed)//-DriveStick.getRawAxis(0)
             // .withVelocityX(DriveStick.getRawAxis(1) * MaxSpeed)       
             //     .withVelocityY(DriveStick.getRawAxis(0) * MaxSpeed)
             );
 
-            double distanceFromPose = tarPosition2d.getDistance(CurrentPose.getTranslation());
+            
 
+            
+            SmartDashboard.putBoolean("Tolerance", ForwardController.atSetpoint());
             SmartDashboard.putNumber("Distance From Tar in Feet", distanceFromPose*3.28084);
             SmartDashboard.putNumber("Distance From Tar in Inches", distanceFromPose*39.37007874);
-
+            SmartDashboard.putNumber("Distance From Tar in Meters",distanceFromPose);
         }
 
 }
