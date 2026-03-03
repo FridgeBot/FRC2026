@@ -126,7 +126,7 @@ public class RobotContainer {
 
         joystick.button(4).whileTrue(new RunIntake(intakeSubsystem));
         joystick.button(3).whileTrue(new ShooterMech(intakeSubsystem));
-        joystick.button(2).toggleOnTrue(new AlineShooter(Translation2d.kZero, drivetrain, joystick, MaxSpeed, MaxAngularRate));
+        joystick.button(2).toggleOnTrue(new AlineShooter(drivetrain, joystick, MaxSpeed, MaxAngularRate,2));
         }
 
 
