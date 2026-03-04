@@ -23,6 +23,7 @@ public class AlineShooter extends Command {
     
     private double MaxSpeed;
     private double MaxAngularRate;
+    private int flip;
 
     private Translation2d tarPosition2d; 
     
@@ -67,11 +68,13 @@ public class AlineShooter extends Command {
             //target poses
         if((DriverStation.getAlliance().orElse(Alliance.Blue)) == Alliance.Blue){
             tarPosition2d = new Translation2d(4.611, 4.021);
+            flip = 1;
         }
         else {
             
             tarPosition2d = new Translation2d(11.915394, 4.021);
 
+            flip =-1;
         }
 
     }
@@ -90,7 +93,7 @@ public class AlineShooter extends Command {
 
             double distanceFromPose = tarPosition2d.getDistance(CurrentPose.getTranslation());
 
-            double ForwardControllerOutput = -ForwardController.calculate(distanceFromPose,Offset);
+            double ForwardControllerOutput = flip*-ForwardController.calculate(distanceFromPose,Offset);
 
             double xval = ForwardControllerOutput*targetAngle.getCos();
             double yval = ForwardControllerOutput*targetAngle.getSin();
@@ -109,8 +112,8 @@ public class AlineShooter extends Command {
 
             drivetrain.setControl(
             Lock.withRotationalRate(pidCalculator.calculate(CurrentPose.getRotation().getDegrees(), targetAngle.getDegrees())*MaxAngularRate) 
-            .withVelocityX(((Tolerance*xval)-joystickXval)*MaxSpeed)//-DriveStick.getRawAxis(1)
-            .withVelocityY(((Tolerance*yval)+joystickYval)*MaxSpeed)//-DriveStick.getRawAxis(0)
+            .withVelocityX(((Tolerance*xval)-joystickXval*flip)*MaxSpeed)//-DriveStick.getRawAxis(1)
+            .withVelocityY(((Tolerance*yval)+joystickYval*flip)*MaxSpeed)//-DriveStick.getRawAxis(0)
             // .withVelocityX(DriveStick.getRawAxis(1) * MaxSpeed)       
             //     .withVelocityY(DriveStick.getRawAxis(0) * MaxSpeed)
             );
@@ -125,4 +128,3 @@ public class AlineShooter extends Command {
         }
 
 }
-

@@ -28,12 +28,12 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 public class Intake extends SubsystemBase{
 
     // Referencing motor controller object-
-    private final SparkMax m_motor = new SparkMax(16, MotorType.kBrushless);
-    private final SparkMax s_motor = new SparkMax(17, MotorType.kBrushless);
+    private final SparkMax m_motor = new SparkMax(4, MotorType.kBrushless);
+    private final SparkMax s_motor = new SparkMax(16, MotorType.kBrushless);
     private final RelativeEncoder m_encoder = m_motor.getEncoder();
     private final RelativeEncoder s_Encoder = s_motor.getEncoder();
     private final Solenoid L_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 0);
-    private final Solenoid R_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 0);
+    private final Solenoid R_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 1);
     //This command will run the intake of the robot. Then set to 0 speed when false.
     
     @Override
@@ -55,11 +55,11 @@ public class Intake extends SubsystemBase{
     }
 
     public void m_motorSpeed(double speed){
-        m_motor.set(speed);
+        m_motor.set(-speed);
     }
 
     public void s_motorSpeed(double speed){
-        s_motor.set(speed);
+        s_motor.set(-speed);
     }
 
     public void MoveLSolenoid(boolean on){
@@ -73,7 +73,7 @@ public class Intake extends SubsystemBase{
     }
 
     public void m_motorVoltage(Voltage voltage){
-        m_motor.setVoltage(voltage);
+        m_motor.setVoltage(voltage.times(-1));
     }
 
 
