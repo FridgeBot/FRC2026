@@ -7,29 +7,26 @@ import frc.robot.subsystems.Intake;
 
 public class MoveIntake extends Command {
 
-    boolean forward;
     Intake subsystem;
 
-    public MoveIntake(boolean forward ,Intake subsystem){
+    public MoveIntake(Intake subsystem){
 
-        this.forward = forward;
         this.subsystem = subsystem;
 
     }
 
     @Override
     public void execute() {
-        if(forward == true){
-         subsystem.intake_mover(0.25);
-        }
-        else{
-          subsystem.intake_mover(-0.25);
-        }
+        subsystem.MoveLSolenoid(true);
+        subsystem.MoveRSolenoid(true);
     }
 
     @Override
     public void end(boolean interrupted) {
-        subsystem.intake_mover(0);
+
+        subsystem.MoveLSolenoid(false);
+        subsystem.MoveRSolenoid(false);
+
     }
 
 

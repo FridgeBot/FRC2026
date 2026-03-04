@@ -15,7 +15,9 @@ import edu.wpi.first.units.measure.MutAngle;
 import edu.wpi.first.units.measure.MutAngularVelocity;
 import edu.wpi.first.units.measure.MutVoltage;
 import edu.wpi.first.units.measure.Voltage;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -30,7 +32,8 @@ public class Intake extends SubsystemBase{
     private final SparkMax s_motor = new SparkMax(17, MotorType.kBrushless);
     private final RelativeEncoder m_encoder = m_motor.getEncoder();
     private final RelativeEncoder s_Encoder = s_motor.getEncoder();
-    private final SparkMax intake_mover = new SparkMax(0, MotorType.kBrushed);
+    private final Solenoid L_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 0);
+    private final Solenoid R_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 0);
     //This command will run the intake of the robot. Then set to 0 speed when false.
     
     @Override
@@ -59,8 +62,14 @@ public class Intake extends SubsystemBase{
         s_motor.set(speed);
     }
 
-    public void intake_mover(double speed){
-        intake_mover.set(speed);
+    public void MoveLSolenoid(boolean on){
+        
+        L_solenoid.set(on);
+    }
+
+    public void MoveRSolenoid(boolean on){
+
+        R_solenoid.set(on);
     }
 
     public void m_motorVoltage(Voltage voltage){
