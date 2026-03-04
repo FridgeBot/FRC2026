@@ -6,6 +6,8 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
+import java.lang.ModuleLayer.Controller;
+
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
@@ -14,6 +16,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 
@@ -21,10 +24,11 @@ import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.Commands.AlineShooter;
+import frc.robot.Commands.MoveIntake;
 import frc.robot.Commands.RunIntake;
 import frc.robot.Commands.ShooterMech;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import edu.wpi.first.wpilibj.XboxController;
 //import for the sendable chooser system
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -52,6 +56,8 @@ public class RobotContainer {
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
     private final CommandJoystick joystick = new CommandJoystick(0);
+
+    private final CommandXboxController Operator = new CommandXboxController(1);
 
      private final SendableChooser<Command> autoChooser;
     
@@ -127,6 +133,8 @@ public class RobotContainer {
         joystick.button(4).whileTrue(new RunIntake(intakeSubsystem));
         joystick.button(3).whileTrue(new ShooterMech(intakeSubsystem));
         joystick.button(2).toggleOnTrue(new AlineShooter(drivetrain, joystick, MaxSpeed, MaxAngularRate,2));
+
+        Operator.y().toggleOnTrue(new MoveIntake(intakeSubsystem));
         }
 
 
