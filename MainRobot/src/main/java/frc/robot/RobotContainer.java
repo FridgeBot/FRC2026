@@ -32,6 +32,7 @@ import edu.wpi.first.wpilibj.XboxController;
 //import for the sendable chooser system
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 
 
 
@@ -73,6 +74,9 @@ public class RobotContainer {
         configureBindings();
 
           // Build an auto chooser. This will use Commands.none() as the default option.
+
+        NamedCommands.registerCommand("ShooterMech", new ShooterMech(intakeSubsystem));
+        NamedCommands.registerCommand("RunIntake", new RunIntake(intakeSubsystem));
 
 
     //Does say there is an issue however build is successful.

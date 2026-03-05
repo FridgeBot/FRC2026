@@ -5,15 +5,15 @@
     "data": {
       "commands": [
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "ShooterMech"
+            "pathName": "StartLowShoot&Grab"
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "FromHubToClimb"
+            "name": "RunIntake"
           }
         }
       ]
