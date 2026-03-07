@@ -139,6 +139,7 @@ public class RobotContainer {
         joystick.button(5).toggleOnTrue(new AlineShooter(drivetrain, joystick, MaxSpeed, MaxAngularRate,2));
 
         Operator.y().toggleOnTrue(new ExstendsIntake(intakeSubsystem));
+        Operator.x().toggleOnTrue(intakeSubsystem.RunShooter());
         }
 
 

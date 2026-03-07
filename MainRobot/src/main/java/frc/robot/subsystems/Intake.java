@@ -30,8 +30,8 @@ import frc.robot.Commands.ExstendsIntake;
 public class Intake extends SubsystemBase{
 
     // Referencing motor controller object-
-    private final SparkMax ShooterMotor = new SparkMax(4, MotorType.kBrushless);
-    private final SparkMax Indexer = new SparkMax(16, MotorType.kBrushless);
+    private final SparkMax ShooterMotor = new SparkMax(16, MotorType.kBrushless);
+    private final SparkMax Indexer = new SparkMax(4, MotorType.kBrushless);
     private final SparkMax Intake = new SparkMax(14, MotorType.kBrushless);
     private final RelativeEncoder Shooter_encoder = ShooterMotor.getEncoder();
     private final RelativeEncoder Indexer_Encoder = Indexer.getEncoder();
@@ -54,7 +54,10 @@ public class Intake extends SubsystemBase{
     }
     
     
+    public Command RunShooter(){
 
+        return runOnce(() ->Shooter_motorSpeed(0.4));
+    }
 
 
     //methods that will run the motors.
