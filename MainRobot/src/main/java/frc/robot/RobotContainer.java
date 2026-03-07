@@ -134,9 +134,9 @@ public class RobotContainer {
     
         //When button 2 is pressed, run the intake--
 
-        joystick.button(4).whileTrue(new RunIntake(intakeSubsystem));
-        joystick.button(3).whileTrue(new ShooterMech(intakeSubsystem));
-        joystick.button(2).toggleOnTrue(new AlineShooter(drivetrain, joystick, MaxSpeed, MaxAngularRate,2));
+        joystick.button(15).whileTrue(new RunIntake(intakeSubsystem));
+        joystick.button(2).whileTrue(new ShooterMech(intakeSubsystem));
+        joystick.button(5).toggleOnTrue(new AlineShooter(drivetrain, joystick, MaxSpeed, MaxAngularRate,2));
 
         Operator.y().toggleOnTrue(new MoveIntake(intakeSubsystem));
         }
