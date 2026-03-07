@@ -15,6 +15,7 @@ import edu.wpi.first.units.measure.MutAngle;
 import edu.wpi.first.units.measure.MutAngularVelocity;
 import edu.wpi.first.units.measure.MutVoltage;
 import edu.wpi.first.units.measure.Voltage;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -35,12 +36,17 @@ public class Intake extends SubsystemBase{
     private final RelativeEncoder Indexer_Encoder = Indexer.getEncoder();
     private final RelativeEncoder Intak_Encoder = Intake.getEncoder();
     private final Solenoid LExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 0);
-    private final Solenoid RExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 99);
+    private final Solenoid RExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 1);
     private final Solenoid LDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.REVPH, 2);
     private final Solenoid RDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.REVPH, 3);
+
+    private final Compressor Compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     
     //This command will run the intake of the robot. Then set to 0 speed when false.
     
+    
+
+
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Current RPM", getShooter_motorSpeed());
