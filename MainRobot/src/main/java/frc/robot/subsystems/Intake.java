@@ -34,8 +34,11 @@ public class Intake extends SubsystemBase{
     private final RelativeEncoder Shooter_encoder = ShooterMotor.getEncoder();
     private final RelativeEncoder Indexer_Encoder = Indexer.getEncoder();
     private final RelativeEncoder Intak_Encoder = Intake.getEncoder();
-    private final Solenoid L_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 0);
-    private final Solenoid R_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 1);
+    private final Solenoid LExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 0);
+    private final Solenoid RExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 99);
+    private final Solenoid LDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.REVPH, 2);
+    private final Solenoid RDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.REVPH, 3);
+    
     //This command will run the intake of the robot. Then set to 0 speed when false.
     
     @Override
@@ -64,14 +67,24 @@ public class Intake extends SubsystemBase{
         Indexer.set(-speed);
     }
 
-    public void MoveLSolenoid(boolean on){
+    public void MoveLExstendIntakeSolenoid(boolean on){
         
-        L_solenoid.set(on);
+        LExstendIntake_solenoid.set(on);
     }
 
-    public void MoveRSolenoid(boolean on){
+    public void MoveRExstendIntakeSolenoid(boolean on){
 
-        R_solenoid.set(on);
+        RExstendIntake_solenoid.set(on);
+    }
+
+     public void MoveRDropIntakeSolenoid(boolean on){
+
+        RDropIntake_Solenoid.set(on);
+    }
+
+     public void MoveLDropIntakeSolenoid(boolean on){
+
+        LDropIntake_Solenoid.set(on);
     }
 
     public void Shooter_motorVoltage(Voltage voltage){

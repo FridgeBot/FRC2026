@@ -5,11 +5,11 @@ import frc.robot.subsystems.Intake;
 
 // DO NOT MOVE WHAT IS ABOVE!! >:|
 
-public class MoveIntake extends Command {
+public class ExstendsIntake extends Command {
 
     Intake subsystem;
 
-    public MoveIntake(Intake subsystem){
+    public ExstendsIntake(Intake subsystem){
 
         this.subsystem = subsystem;
 
@@ -17,15 +17,15 @@ public class MoveIntake extends Command {
 
     @Override
     public void execute() {
-        subsystem.MoveLSolenoid(true);
-        subsystem.MoveRSolenoid(true);
+        subsystem.MoveLExstendIntakeSolenoid(true);
+        subsystem.MoveRExstendIntakeSolenoid(true);
     }
 
     @Override
     public void end(boolean interrupted) {
 
-        subsystem.MoveLSolenoid(false);
-        subsystem.MoveRSolenoid(false);
+        subsystem.MoveLExstendIntakeSolenoid(false);
+        subsystem.MoveRExstendIntakeSolenoid(false);
 
     }
 

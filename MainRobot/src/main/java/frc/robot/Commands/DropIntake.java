@@ -1,0 +1,30 @@
+package frc.robot.Commands;
+
+import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.Intake;
+
+public class DropIntake extends Command {
+
+    Intake subsystem;
+
+    public DropIntake(Intake subsystem){
+
+        this.subsystem = subsystem;
+
+    }
+
+    @Override
+    public void execute() {
+        
+        subsystem.MoveRDropIntakeSolenoid(true);
+        subsystem.MoveLDropIntakeSolenoid(true);
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        subsystem.MoveRDropIntakeSolenoid(false);
+        subsystem.MoveLDropIntakeSolenoid(false);
+    }
+
+
+}

@@ -24,7 +24,7 @@ import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.Commands.AlineShooter;
-import frc.robot.Commands.MoveIntake;
+import frc.robot.Commands.ExstendsIntake;
 import frc.robot.Commands.RunIntake;
 import frc.robot.Commands.ShooterMech;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -138,7 +138,7 @@ public class RobotContainer {
         joystick.button(2).whileTrue(new ShooterMech(intakeSubsystem));
         joystick.button(5).toggleOnTrue(new AlineShooter(drivetrain, joystick, MaxSpeed, MaxAngularRate,2));
 
-        Operator.y().toggleOnTrue(new MoveIntake(intakeSubsystem));
+        Operator.y().toggleOnTrue(new ExstendsIntake(intakeSubsystem));
         }
 
 
