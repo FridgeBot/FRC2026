@@ -44,7 +44,11 @@ public class Intake extends SubsystemBase{
     
     //This command will run the intake of the robot. Then set to 0 speed when false.
     
-    
+    public Command Intakeforward(){
+
+        return runOnce(() ->MoveExstendIntakeSolenoid(true));
+
+    } 
 
 
     @Override
@@ -56,6 +60,11 @@ public class Intake extends SubsystemBase{
 
     //methods that will run the motors.
     //Curerently shooter can shoot successfully from 8ft and 2.44 meters.
+    public boolean Exstended_SolenoidState(){
+
+        return ExstendIntake_solenoid.get();
+
+    }
 
     public double getShooter_motorSpeed(){
         return Shooter_encoder.getVelocity();

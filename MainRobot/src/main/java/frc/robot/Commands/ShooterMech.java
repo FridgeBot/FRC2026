@@ -14,6 +14,8 @@ public ShooterMech(Intake shooterSubsystem){
 
 @Override
 public void execute(){
+   if(subSystem.Exstended_SolenoidState()){
+   
     subSystem.Shooter_motorSpeed(0.75);
 
     if(Math.abs(subSystem.getShooter_motorSpeed()) > 4000){
@@ -24,8 +26,19 @@ public void execute(){
         
 
     }
-}
+    }
 
+    else{
+
+    subSystem.Shooter_motorSpeed(0);
+    subSystem.Indexer_motorSpeed(0);
+    subSystem.Intake_motorSpeed(0);
+
+    }
+
+
+
+}
 @Override
 public void end(boolean interrupted){
     subSystem.Shooter_motorSpeed(0);
