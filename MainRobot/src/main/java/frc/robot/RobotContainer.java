@@ -140,6 +140,8 @@ public class RobotContainer {
         joystick.button(5).toggleOnTrue(new Rotate(drivetrain, joystick, MaxSpeed, MaxAngularRate));
 
         Operator.y().toggleOnTrue(new ExstendsIntake(intakeSubsystem));
+        Operator.rightBumper().onTrue(intakeSubsystem.OutAndDrop());
+        Operator.leftBumper().onTrue(intakeSubsystem.UpAndIn());
         }
 
 
