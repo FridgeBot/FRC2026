@@ -18,14 +18,14 @@ public class ExstendsIntake extends Command {
     @Override
     public void execute() {
         subsystem.MoveLExstendIntakeSolenoid(true);
-        subsystem.MoveRExstendIntakeSolenoid(true);
+        // subsystem.MoveRExstendIntakeSolenoid(true);
     }
 
     @Override
     public void end(boolean interrupted) {
 
         subsystem.MoveLExstendIntakeSolenoid(false);
-        subsystem.MoveRExstendIntakeSolenoid(false);
+        // subsystem.MoveRExstendIntakeSolenoid(false);
 
     }
 

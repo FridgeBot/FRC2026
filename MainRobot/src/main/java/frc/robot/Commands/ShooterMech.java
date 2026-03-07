@@ -13,9 +13,9 @@ public ShooterMech(Intake shooterSubsystem){
 
 @Override
 public void execute(){
-    subSystem.Shooter_motorSpeed(0.875);
+    subSystem.Shooter_motorSpeed(0.5);
 
-    if(subSystem.getShooter_motorSpeed() > 4000){
+    if(subSystem.getShooter_motorSpeed() > 2000){
         
         subSystem.Indexer_motorSpeed(-0.5);
         subSystem.Intake_motorSpeed(0.5);

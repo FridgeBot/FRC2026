@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+import frc.robot.Commands.ExstendsIntake;
 
 // 8ft and 2.44 meters with the power given to the motors
 
@@ -35,10 +36,10 @@ public class Intake extends SubsystemBase{
     private final RelativeEncoder Shooter_encoder = ShooterMotor.getEncoder();
     private final RelativeEncoder Indexer_Encoder = Indexer.getEncoder();
     private final RelativeEncoder Intak_Encoder = Intake.getEncoder();
-    private final Solenoid LExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 0);
-    private final Solenoid RExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.REVPH, 1);
-    private final Solenoid LDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.REVPH, 2);
-    private final Solenoid RDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.REVPH, 3);
+    private final Solenoid LExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
+    private final Solenoid RExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 1);
+    private final Solenoid LDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 2);
+    private final Solenoid RDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 3);
 
     private final Compressor Compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     
@@ -53,6 +54,8 @@ public class Intake extends SubsystemBase{
     }
     
     
+
+
 
     //methods that will run the motors.
     //Curerently shooter can shoot successfully from 8ft and 2.44 meters.
