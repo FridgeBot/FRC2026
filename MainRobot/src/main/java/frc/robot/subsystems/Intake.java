@@ -36,8 +36,7 @@ public class Intake extends SubsystemBase{
     private final RelativeEncoder Shooter_encoder = ShooterMotor.getEncoder();
     private final RelativeEncoder Indexer_Encoder = Indexer.getEncoder();
     private final RelativeEncoder Intak_Encoder = Intake.getEncoder();
-    private final Solenoid LExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
-    private final Solenoid RExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 1);
+    private final Solenoid ExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
     private final Solenoid LDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 2);
     private final Solenoid RDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 3);
 
@@ -53,11 +52,6 @@ public class Intake extends SubsystemBase{
         SmartDashboard.putNumber("Current RPM", getShooter_motorSpeed());
     }
     
-    
-    public Command RunShooter(){
-
-        return runOnce(() ->Shooter_motorSpeed(0.4));
-    }
 
 
     //methods that will run the motors.
@@ -79,14 +73,9 @@ public class Intake extends SubsystemBase{
         Indexer.set(-speed);
     }
 
-    public void MoveLExstendIntakeSolenoid(boolean on){
+    public void MoveExstendIntakeSolenoid(boolean on){
         
-        LExstendIntake_solenoid.set(on);
-    }
-
-    public void MoveRExstendIntakeSolenoid(boolean on){
-
-        RExstendIntake_solenoid.set(on);
+        ExstendIntake_solenoid.set(on);
     }
 
      public void MoveRDropIntakeSolenoid(boolean on){
