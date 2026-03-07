@@ -16,14 +16,12 @@ public class DropIntake extends Command {
     @Override
     public void execute() {
         
-        subsystem.MoveRDropIntakeSolenoid(true);
-        subsystem.MoveLDropIntakeSolenoid(true);
+        subsystem.MoveDropIntakeSolenoid(true);
     }
 
     @Override
     public void end(boolean interrupted) {
-        subsystem.MoveRDropIntakeSolenoid(false);
-        subsystem.MoveLDropIntakeSolenoid(false);
+        subsystem.MoveDropIntakeSolenoid(false);
     }
 
 

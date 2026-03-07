@@ -38,9 +38,8 @@ public class Intake extends SubsystemBase{
     private final RelativeEncoder Indexer_Encoder = Indexer.getEncoder();
     private final RelativeEncoder Intak_Encoder = Intake.getEncoder();
     private final Solenoid ExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
-    private final Solenoid LDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 2);
-    private final Solenoid RDropIntake_Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 3);
-
+    private final Solenoid DropIntake_Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 1);
+    
     private final Compressor Compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     
     //This command will run the intake of the robot. Then set to 0 speed when false.
@@ -53,13 +52,13 @@ public class Intake extends SubsystemBase{
 
     public Command DropIntake(){
 
-        return Commands.parallel (runOnce(() ->LDropIntake_Solenoid.set(true)), runOnce(() ->RDropIntake_Solenoid.set(true))).onlyIf(() ->Exstended_SolenoidState());
+        return runOnce(() ->DropIntake_Solenoid.set(true)).onlyIf(() ->Exstended_SolenoidState());
 
     }
 
     public Command PickUpIntake(){
 
-        return Commands.parallel (runOnce(() ->LDropIntake_Solenoid.set(false)), runOnce(() -> RDropIntake_Solenoid.set(false)));
+        return runOnce(() ->DropIntake_Solenoid.set(false));
     }
 
     public Command OutAndDrop(){
@@ -106,14 +105,9 @@ public class Intake extends SubsystemBase{
         ExstendIntake_solenoid.set(on);
     }
 
-     public void MoveRDropIntakeSolenoid(boolean on){
+     public void MoveDropIntakeSolenoid(boolean on){
 
-        RDropIntake_Solenoid.set(on);
-    }
-
-     public void MoveLDropIntakeSolenoid(boolean on){
-
-        LDropIntake_Solenoid.set(on);
+        DropIntake_Solenoid.set(on);
     }
 
     public void Shooter_motorVoltage(Voltage voltage){
