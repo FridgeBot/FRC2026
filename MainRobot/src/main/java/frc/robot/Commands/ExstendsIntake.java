@@ -22,8 +22,10 @@ public class ExstendsIntake extends Command {
 
     @Override
     public void end(boolean interrupted) {
-
-        subsystem.MoveExstendIntakeSolenoid(false);
+        if(subsystem.DropIntake_SolenoidState() == false){
+            subsystem.MoveExstendIntakeSolenoid(false);
+        }
+     
     }
 
 

@@ -18,8 +18,13 @@ public class RunIntake extends Command {
     @Override
     public void execute() {
         // intakesub.Shooter_motorSpeed(0.875);
-        intakesub.Indexer_motorSpeed(0.1);
-        intakesub.Intake_motorSpeed(0.1);
+        if(intakesub.Exstended_SolenoidState() == true){
+            intakesub.Indexer_motorSpeed(-0.2);
+            intakesub.Intake_motorSpeed(-0.2);
+        }else{
+            intakesub.Indexer_motorSpeed(0);
+            intakesub.Intake_motorSpeed(0);
+        }
     }
 
     // Called once the command ends or is interrupted.

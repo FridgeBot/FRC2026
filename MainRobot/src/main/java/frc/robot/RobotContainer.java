@@ -145,6 +145,9 @@ public class RobotContainer {
         }
 
 
+    public void HandleDisable(){
+        intakeSubsystem.DisableSolenoids();
+    }
 //get info from the dashboard and sets that data to the auton init function ----
 
     public Command getAutonomousCommand() {

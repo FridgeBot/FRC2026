@@ -66,7 +66,12 @@ public class Intake extends SubsystemBase{
     }
 
     public Command UpAndIn(){
-        return PickUpIntake().andThen(Commands.waitSeconds (2)).andThen(runOnce(() ->ExstendIntake_solenoid.set(false)));
+        return PickUpIntake().andThen(Commands.waitSeconds (1)).andThen(runOnce(() ->ExstendIntake_solenoid.set(false)).unless(() ->DropIntake_SolenoidState()));
+    }
+
+    public void DisableSolenoids(){
+        ExstendIntake_solenoid.set(false);
+        DropIntake_Solenoid.set(false);
     }
 
     @Override
@@ -82,6 +87,10 @@ public class Intake extends SubsystemBase{
 
         return ExstendIntake_solenoid.get();
 
+    }
+
+    public boolean DropIntake_SolenoidState(){
+        return DropIntake_Solenoid.get();
     }
 
     public double getShooter_motorSpeed(){
