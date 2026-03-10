@@ -36,7 +36,7 @@ public class Intake extends SubsystemBase{
     private final SparkMax Intake = new SparkMax(14, MotorType.kBrushless);
     private final RelativeEncoder Shooter_encoder = ShooterMotor.getEncoder();
     private final RelativeEncoder Indexer_Encoder = Indexer.getEncoder();
-    private final RelativeEncoder Intak_Encoder = Intake.getEncoder();
+    private final RelativeEncoder Intake_Encoder = Intake.getEncoder();
     private final Solenoid ExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
     private final Solenoid DropIntake_Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 1);
     
@@ -97,8 +97,8 @@ public class Intake extends SubsystemBase{
         return Shooter_encoder.getVelocity();
     }
 
-    public double getS_motorSpeed(){
-        return Intak_Encoder.getVelocity();
+    public double getIntake_motorSpeed(){
+        return Intake_Encoder.getVelocity();
     }
 
     public void Shooter_motorSpeed(double speed){
@@ -128,7 +128,7 @@ public class Intake extends SubsystemBase{
     }
 
     public double Intake_getSpeed(){
-     return Intak_Encoder.getVelocity();   
+     return Intake_Encoder.getVelocity();   
     }
 
 

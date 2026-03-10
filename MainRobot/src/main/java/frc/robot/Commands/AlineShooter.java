@@ -32,9 +32,9 @@ public class AlineShooter extends Command {
 
     private PIDController pidCalculator = new PIDController(0.015, 0, 0);
     private PIDController ForwardController =  new PIDController(0, 0, 0);
-    private double p = 0;
-    private double i = 0;
-    private double d = 0;
+    // private double p = 0;
+    // private double i = 0;
+    // private double d = 0;
 
     private double Offset;
 
@@ -52,18 +52,18 @@ public class AlineShooter extends Command {
         pidCalculator.enableContinuousInput(-180,180);
         ForwardController.setTolerance(0.02);
 
-        Preferences.initDouble("p", p);
-        Preferences.initDouble("i", i);
-        Preferences.initDouble("d", d);
+        // Preferences.initDouble("p", p);
+        // Preferences.initDouble("i", i);
+        // Preferences.initDouble("d", d);
     }
 
     @Override
     public void initialize() {
-        p = Preferences.getDouble("p", p);
-        i = Preferences.getDouble("i", i);
-        d = Preferences.getDouble("d", d);
+        // p = Preferences.getDouble("p", p);
+        // i = Preferences.getDouble("i", i);
+        // d = Preferences.getDouble("d", d);
         
-         ForwardController.setPID(p, i, d);
+        //  ForwardController.setPID(p, i, d);
 
             //target poses
         if((DriverStation.getAlliance().orElse(Alliance.Blue)) == Alliance.Blue){
