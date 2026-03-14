@@ -23,7 +23,6 @@ public class Rotate extends Command {
     
     private double MaxSpeed;
     private double MaxAngularRate;
-    private int flip;
 
     private Translation2d tarPosition2d; 
     
@@ -59,7 +58,14 @@ public class Rotate extends Command {
         // d = Preferences.getDouble("d", d);
         
         //  ForwardController.setPID(p, i, d);
+        if((DriverStation.getAlliance().orElse(Alliance.Blue)) == Alliance.Blue){
+            tarPosition2d = new Translation2d(4.611, 4.021);
+        }
+        else {
+            
+            tarPosition2d = new Translation2d(11.915394, 4.021);
 
+        }
 
     }
 

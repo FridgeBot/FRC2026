@@ -9,15 +9,15 @@
           "data": {
             "commands": [
               {
-                "type": "named",
-                "data": {
-                  "name": "Intake Out"
-                }
-              },
-              {
                 "type": "wait",
                 "data": {
                   "waitTime": 1.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake Out"
                 }
               }
             ]
@@ -26,13 +26,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "LeftToCollectionPath"
+            "pathName": "LeftShootFromDistance"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "RunIntake"
+            "name": "ShooterMech"
           }
         }
       ]

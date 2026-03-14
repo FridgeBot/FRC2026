@@ -1,4 +1,9 @@
 package frc.robot.Commands;
+import static edu.wpi.first.units.Units.Volt;
+
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.units.VoltageUnit;
+import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.subsystems.Intake;
@@ -16,9 +21,9 @@ public ShooterMech(Intake shooterSubsystem){
 public void execute(){
    if(subSystem.Exstended_SolenoidState()){
    
-    subSystem.Shooter_motorSpeed(0.75);
+    subSystem.Shooter_motorVoltage(Voltage.ofBaseUnits(7,Volt));
 
-    if(Math.abs(subSystem.getShooter_motorSpeed()) > 4000){
+    if(Math.abs(subSystem.getShooter_motorSpeed()) > 3350){
         
         subSystem.Indexer_motorSpeed(0.3);
         subSystem.Intake_motorSpeed(-0.3);

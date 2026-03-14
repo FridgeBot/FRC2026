@@ -9,15 +9,15 @@
           "data": {
             "commands": [
               {
-                "type": "named",
-                "data": {
-                  "name": "Intake Out"
-                }
-              },
-              {
                 "type": "wait",
                 "data": {
                   "waitTime": 1.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake Out"
                 }
               }
             ]
@@ -26,7 +26,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "FromHubToClimb"
+            "pathName": "RightShootFromDistance"
           }
         },
         {
@@ -46,6 +46,12 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ExstendedRightShootFrom Distance"
           }
         }
       ]
