@@ -120,7 +120,7 @@ public class Intake extends SubsystemBase{
     }
 
     public void Shooter_motorVoltage(Voltage voltage){
-        ShooterMotor.setVoltage(voltage.times(-1));
+        ShooterMotor.setVoltage(voltage.times(1));
     }
 
     public void Intake_motorSpeed(double speed){

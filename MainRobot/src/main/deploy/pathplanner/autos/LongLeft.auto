@@ -32,19 +32,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "FirstGrabLF"
+            "pathName": "LFFirstGrab"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "FirstGrabLB"
+            "pathName": "LBFirstGrab"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "BackwardLTrench"
+            "pathName": "LBackwardTrench"
           }
         },
         {

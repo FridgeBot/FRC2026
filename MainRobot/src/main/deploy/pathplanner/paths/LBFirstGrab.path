@@ -11,8 +11,8 @@
         "x": 7.764317912218269,
         "y": 6.611826809015421
       },
-      "isLocked": false,
-      "linkedName": "FirstGrabEnd"
+      "isLocked": true,
+      "linkedName": "LFirstGrabEnd"
     },
     {
       "anchor": {
@@ -24,8 +24,8 @@
         "y": 7.02067615658363
       },
       "nextControl": null,
-      "isLocked": false,
-      "linkedName": "TrenchEndL"
+      "isLocked": true,
+      "linkedName": "LTrenchEnd"
     }
   ],
   "rotationTargets": [],

@@ -27,6 +27,7 @@ import frc.robot.Commands.AlineShooter;
 import frc.robot.Commands.ExstendsIntake;
 import frc.robot.Commands.Rotate;
 import frc.robot.Commands.RunIntake;
+import frc.robot.Commands.ShootWithVelocityControl;
 import frc.robot.Commands.ShooterMech;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
@@ -142,6 +143,7 @@ public class RobotContainer {
         Operator.y().toggleOnTrue(new ExstendsIntake(intakeSubsystem));
         Operator.rightBumper().onTrue(intakeSubsystem.OutAndDrop());
         Operator.leftBumper().onTrue(intakeSubsystem.UpAndIn());
+        Operator.a().onTrue(new ShootWithVelocityControl(intakeSubsystem));
         }
 
 

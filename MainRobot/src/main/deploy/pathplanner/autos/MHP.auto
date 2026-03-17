@@ -26,7 +26,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "StartToHP"
+            "pathName": "MToHP"
           }
         },
         {
@@ -40,15 +40,15 @@
           "data": {
             "commands": [
               {
-                "type": "named",
-                "data": {
-                  "name": "ShooterMech"
-                }
-              },
-              {
                 "type": "wait",
                 "data": {
                   "waitTime": 4.5
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "ShooterMech"
                 }
               }
             ]
@@ -69,19 +69,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "FirstGrabRF"
+            "pathName": "RFFirstGrab"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "FirstGrabRB"
+            "pathName": "RBFirstGrab"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "BackwardRTrench"
+            "pathName": "RBackwardTrench"
           }
         },
         {

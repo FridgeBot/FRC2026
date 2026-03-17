@@ -3,32 +3,37 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.7,
-        "y": 4.5
+        "x": 6.5,
+        "y": 0.663
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.677639383155398,
-        "y": 3.2216631079478057
+        "x": 7.499999999999999,
+        "y": 0.663
       },
-      "isLocked": false,
-      "linkedName": "endSecGrab"
+      "isLocked": true,
+      "linkedName": "RTrenchEnd"
     },
     {
       "anchor": {
-        "x": 6.7,
-        "y": 7.406
+        "x": 3.514436536180309,
+        "y": 0.663
       },
       "prevControl": {
-        "x": 6.720676156583631,
-        "y": 8.55723368920522
+        "x": 2.514436536180309,
+        "y": 0.6630000000000001
       },
       "nextControl": null,
-      "isLocked": false,
-      "linkedName": "TrenchEndL"
+      "isLocked": true,
+      "linkedName": "RStartTrench"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.32450331125827747,
+      "rotationDegrees": 180.0
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -41,14 +46,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.0,
-    "rotation": -90.0
+    "velocity": 0,
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 90.0
   },
   "useDefaultConstraints": true
 }

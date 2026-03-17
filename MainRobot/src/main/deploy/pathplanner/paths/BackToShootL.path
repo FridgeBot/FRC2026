@@ -11,8 +11,8 @@
         "x": 3.246285324501776,
         "y": 7.076002125549261
       },
-      "isLocked": false,
-      "linkedName": "StartLeftTrench"
+      "isLocked": true,
+      "linkedName": "LStartTrench"
     },
     {
       "anchor": {
@@ -24,7 +24,7 @@
         "y": 7.263393123548326
       },
       "nextControl": null,
-      "isLocked": false,
+      "isLocked": true,
       "linkedName": "ShootLeft"
     }
   ],

@@ -9,15 +9,15 @@
           "data": {
             "commands": [
               {
-                "type": "named",
-                "data": {
-                  "name": "Intake Out"
-                }
-              },
-              {
                 "type": "wait",
                 "data": {
                   "waitTime": 1.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake Out"
                 }
               }
             ]
@@ -26,31 +26,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ForwardRTrenchight"
+            "pathName": "RStartToHP"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RFFirstGrab"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RBFirstGrab"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RBackwardTrench"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "BackToShootR"
+            "pathName": "HPToShootR"
           }
         },
         {
@@ -82,6 +64,30 @@
           "type": "path",
           "data": {
             "pathName": "ForwardRTrenchight"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RFFirstGrab"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RBFirstGrab"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RBackwardTrench"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BackToShootR"
           }
         }
       ]

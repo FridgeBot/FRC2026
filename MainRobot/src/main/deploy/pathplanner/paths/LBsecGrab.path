@@ -4,46 +4,32 @@
     {
       "anchor": {
         "x": 6.7,
-        "y": 7.406
+        "y": 4.5
       },
       "prevControl": null,
       "nextControl": {
         "x": 6.677639383155398,
-        "y": 6.127663107947805
+        "y": 3.2216631079478057
       },
       "isLocked": false,
-      "linkedName": "TrenchEndL"
+      "linkedName": "endSecGrab"
     },
     {
       "anchor": {
         "x": 6.7,
-        "y": 4.5
+        "y": 7.406
       },
       "prevControl": {
         "x": 6.720676156583631,
-        "y": 5.65123368920522
+        "y": 8.55723368920522
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "endSecGrab"
+      "linkedName": "LTrenchEnd"
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.3307262569832388,
-      "maxWaypointRelativePos": 1.0,
-      "constraints": {
-        "maxVelocity": 1.0,
-        "maxAcceleration": 3.0,
-        "maxAngularVelocity": 540.0,
-        "maxAngularAcceleration": 720.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    }
-  ],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {

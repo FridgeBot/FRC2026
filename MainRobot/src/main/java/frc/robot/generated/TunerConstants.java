@@ -239,7 +239,7 @@ public class TunerConstants {
          */
         public TunerSwerveDrivetrain(
             SwerveDrivetrainConstants drivetrainConstants,
-            SwerveModuleConstants<?, ?, ?>... modules
+            SwerveModuleConstants<?, ?, ?>... modules 
         ) {
             super(
                 TalonFX::new, TalonFX::new, CANcoder::new,
@@ -278,7 +278,7 @@ public class TunerConstants {
          * the devices themselves. If they need the devices, they can access them through
          * getters in the classes.
          *
-         * @param drivetrainConstants       Drivetrain-wide constants for the swerve drive
+         * @param drivetrainConstants       Drivetrain-wide constants for the swerve drive S
          * @param odometryUpdateFrequency   The frequency to run the odometry loop. If
          *                                  unspecified or set to 0 Hz, this is 250 Hz on
          *                                  CAN FD, and 100 Hz on CAN 2.0.

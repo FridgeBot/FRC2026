@@ -11,8 +11,8 @@
         "x": 4.514436536180309,
         "y": 7.406
       },
-      "isLocked": false,
-      "linkedName": "StartLeftTrench"
+      "isLocked": true,
+      "linkedName": "LStartTrench"
     },
     {
       "anchor": {
@@ -24,8 +24,8 @@
         "y": 7.406
       },
       "nextControl": null,
-      "isLocked": false,
-      "linkedName": "TrenchEndL"
+      "isLocked": true,
+      "linkedName": "LTrenchEnd"
     }
   ],
   "rotationTargets": [

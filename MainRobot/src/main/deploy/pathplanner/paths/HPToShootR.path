@@ -11,7 +11,7 @@
         "x": 1.907598352919329,
         "y": 0.6411655937853467
       },
-      "isLocked": false,
+      "isLocked": true,
       "linkedName": "HPStation"
     },
     {
@@ -24,8 +24,8 @@
         "y": 1.095416691560332
       },
       "nextControl": null,
-      "isLocked": false,
-      "linkedName": "RightShoot"
+      "isLocked": true,
+      "linkedName": "RShoot"
     }
   ],
   "rotationTargets": [],

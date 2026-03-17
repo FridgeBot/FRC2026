@@ -11,8 +11,8 @@
         "x": 3.7084598221203495,
         "y": 0.5053454266028758
       },
-      "isLocked": false,
-      "linkedName": "StartRightTrench"
+      "isLocked": true,
+      "linkedName": "RStartTrench"
     },
     {
       "anchor": {
@@ -24,8 +24,8 @@
         "y": 2.1454238916181017
       },
       "nextControl": null,
-      "isLocked": false,
-      "linkedName": "RightShoot"
+      "isLocked": true,
+      "linkedName": "RShoot"
     }
   ],
   "rotationTargets": [],
