@@ -27,38 +27,43 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
-import frc.robot.Commands.ExstendsIntake;
+import frc.robot.submodule.Commands.ExstendsIntake;
 
 // 8ft and 2.44 meters with the power given to the motors
 
 public class Intake extends SubsystemBase{
 
     // Referencing motor controller object-
-    private final SparkMax ShooterMotor = new SparkMax(16, MotorType.kBrushless);
-    private final SparkMax Indexer = new SparkMax(4, MotorType.kBrushless);
-    private final SparkMax Intake = new SparkMax(14, MotorType.kBrushless);
-    private final SparkMax TempShooter = new SparkMax(15, MotorType.kBrushless);
-    private final RelativeEncoder TempEncoder = TempShooter.getEncoder();
+    // orange motors
+    // private final SparkMax ShooterMotor = new SparkMax(16, MotorType.kBrushless);
+    // private final SparkMax Indexer = new SparkMax(4, MotorType.kBrushless);
+    // private final RelativeEncoder Shooter_encoder = ShooterMotor.getEncoder();
+    // private final RelativeEncoder Indexer_Encoder = Indexer.getEncoder();
+
+    // black motors
+    private final SparkMax ShooterMotor = new SparkMax(15, MotorType.kBrushless);
     private final RelativeEncoder Shooter_encoder = ShooterMotor.getEncoder();
-    private final RelativeEncoder Indexer_Encoder = Indexer.getEncoder();
-    private final RelativeEncoder Intake_Encoder = Intake.getEncoder();
-    private final TalonSRX TempIntake = new TalonSRX(10);
+    private final TalonSRX Indexer = new TalonSRX(10);
+
+    // maybe shared?
+    private final SparkMax Intake = new SparkMax(14, MotorType.kBrushless);
+        private final RelativeEncoder Intake_Encoder = Intake.getEncoder();
     private final Solenoid ExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
     private final Solenoid DropIntake_Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 1);
 
     private final Compressor Compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     
-    public void TempIntake_setSpeed(double speed){
-        TempIntake.set(TalonSRXControlMode.PercentOutput, speed);
-    }
+    // public void TempIntake_setSpeed(double speed){
+    //     TempIntake.set(TalonSRXControlMode.PercentOutput, speed);
+    // }
 
-    public double getTempShooter_speed(){
-        return TempEncoder.getVelocity();
-    }
+    // public double getTempShooter_speed(){
+    //     return TempEncoder.getVelocity();
+    // }
 
-    public void TempShooter_setVolts(Voltage volts){
-        TempShooter.setVoltage(volts.times(1));
-    }
+    // public void TempShooter_setVolts(Voltage volts){
+    //     TempShooter.setVoltage(volts.times(1));
+    // }
 
 
 
@@ -97,7 +102,7 @@ public class Intake extends SubsystemBase{
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Current RPM", getShooter_motorSpeed());
-        SmartDashboard.putNumber("TempRPM", getTempShooter_speed());
+        // SmartDashboard.putNumber("TempRPM", getTempShooter_speed());
     }
     
 

@@ -1,0 +1,3 @@
+[submodule "MainRobot/src/main/java/frc/robot/submodule"]
+	path = MainRobot/src/main/java/frc/robot/submodule
+	url = https://github.com/corunnaStudent5084/testSubmoduals.git

@@ -19,16 +19,15 @@ import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
-
-import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Intake;
-import frc.robot.Commands.AlineShooter;
-import frc.robot.Commands.ExstendsIntake;
-import frc.robot.Commands.Rotate;
-import frc.robot.Commands.RunIntake;
-import frc.robot.Commands.ShootWithVelocityControl;
-import frc.robot.Commands.ShooterMech;
+import frc.robot.generated.TunerConstants;
+import frc.robot.submodule.Commands.AlineShooter;
+import frc.robot.submodule.Commands.ExstendsIntake;
+import frc.robot.submodule.Commands.Rotate;
+import frc.robot.submodule.Commands.RunIntake;
+import frc.robot.submodule.Commands.ShootWithVelocityControl;
+import frc.robot.submodule.Commands.ShooterMech;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 //import for the sendable chooser system
