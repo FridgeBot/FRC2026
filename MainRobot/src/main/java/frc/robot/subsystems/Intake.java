@@ -132,7 +132,7 @@ public class Intake extends SubsystemBase{
     }
 
     public void Indexer_motorSpeed(double speed){
-        Indexer.set(-speed);
+        Indexer.set(TalonSRXControlMode.PercentOutput, -speed);
     }
 
     public void MoveExstendIntakeSolenoid(boolean on){
