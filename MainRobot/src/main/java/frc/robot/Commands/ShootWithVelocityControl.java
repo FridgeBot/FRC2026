@@ -5,6 +5,7 @@ import static edu.wpi.first.units.Units.Volts;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Intake;
 
@@ -19,13 +20,13 @@ public class ShootWithVelocityControl extends Command {
     private double pidValue = 0;
 
 
-    private double targetRPM = 0;
-    private double ks = 0;
-    private double kv = 0;
-    private double ka = 0;
-    private double p = 0;
-    private double i = 0;
-    private double d = 0;
+    private double targetRPM = 0;//3000
+    private double ks = 0;//0.15
+    private double kv = 0;//0.002007
+    private double ka = 0;//0
+    private double p = 0;//0.005
+    private double i = 0;//0
+    private double d = 0;//0.0007
     private double marginOfError = 100;
 
 /* Ks 0.125 just a hair higher stops at some points
@@ -68,20 +69,23 @@ public class ShootWithVelocityControl extends Command {
 
     @Override
     public void execute() {
-        currentRPM = intake.getShooter_motorSpeed();
+        currentRPM = intake.getTempShooter_speed();
         feedForwardValue = feedforwardCalculator.calculate(targetRPM);
         pidValue = pidCalculator.calculate(currentRPM, targetRPM);
 
-        intake.Shooter_motorVoltage(Volts.of(feedForwardValue + pidValue));
+        intake.TempShooter_setVolts(Volts.of(feedForwardValue + pidValue));
 
-        if(Math.abs(intake.getShooter_motorSpeed() - targetRPM) <= marginOfError && targetRPM > 0){
-            intake.Indexer_motorSpeed(-0.85);
+        if(Math.abs(intake.getTempShooter_speed() - targetRPM) <= marginOfError && targetRPM != 0){
+            intake.Indexer_motorSpeed(0.85);
         }
+    
+        SmartDashboard.putBoolean("okToShoot", Math.abs(intake.getTempShooter_speed() - targetRPM) <= marginOfError && targetRPM != 0);
+        SmartDashboard.putNumber("ShooterSpeed", targetRPM);
     }
 
     @Override
     public void end(boolean interrupted) {
-        intake.Shooter_motorVoltage(Volts.zero());
+        intake.TempShooter_setVolts(Volts.zero());
         intake.Indexer_motorSpeed(0);
     }
     

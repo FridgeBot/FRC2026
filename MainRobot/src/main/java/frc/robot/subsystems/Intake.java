@@ -34,6 +34,8 @@ public class Intake extends SubsystemBase{
     private final SparkMax ShooterMotor = new SparkMax(16, MotorType.kBrushless);
     private final SparkMax Indexer = new SparkMax(4, MotorType.kBrushless);
     private final SparkMax Intake = new SparkMax(14, MotorType.kBrushless);
+    private final SparkMax TempShooter = new SparkMax(15, MotorType.kBrushless);
+    private final RelativeEncoder TempEncoder = TempShooter.getEncoder();
     private final RelativeEncoder Shooter_encoder = ShooterMotor.getEncoder();
     private final RelativeEncoder Indexer_Encoder = Indexer.getEncoder();
     private final RelativeEncoder Intake_Encoder = Intake.getEncoder();
@@ -42,6 +44,17 @@ public class Intake extends SubsystemBase{
     
     private final Compressor Compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     
+
+    public double getTempShooter_speed(){
+        return TempEncoder.getVelocity();
+    }
+
+    public void TempShooter_setVolts(Voltage volts){
+        TempShooter.setVoltage(volts.times(1));
+    }
+
+
+
     //This command will run the intake of the robot. Then set to 0 speed when false.
     
     public Command Intakeforward(){

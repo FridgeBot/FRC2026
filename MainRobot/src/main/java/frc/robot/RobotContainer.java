@@ -143,7 +143,7 @@ public class RobotContainer {
         Operator.y().toggleOnTrue(new ExstendsIntake(intakeSubsystem));
         Operator.rightBumper().onTrue(intakeSubsystem.OutAndDrop());
         Operator.leftBumper().onTrue(intakeSubsystem.UpAndIn());
-        Operator.a().onTrue(new ShootWithVelocityControl(intakeSubsystem));
+        Operator.a().toggleOnTrue(new ShootWithVelocityControl(intakeSubsystem));
         }
 
 
