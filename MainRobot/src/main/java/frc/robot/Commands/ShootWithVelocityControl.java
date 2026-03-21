@@ -76,7 +76,7 @@ public class ShootWithVelocityControl extends Command {
         intake.TempShooter_setVolts(Volts.of(feedForwardValue + pidValue));
 
         if(Math.abs(intake.getTempShooter_speed() - targetRPM) <= marginOfError && targetRPM != 0){
-            intake.Indexer_motorSpeed(0.85);
+            intake.TempIntake_setSpeed(1);
         }
     
         SmartDashboard.putBoolean("okToShoot", Math.abs(intake.getTempShooter_speed() - targetRPM) <= marginOfError && targetRPM != 0);
@@ -86,7 +86,7 @@ public class ShootWithVelocityControl extends Command {
     @Override
     public void end(boolean interrupted) {
         intake.TempShooter_setVolts(Volts.zero());
-        intake.Indexer_motorSpeed(0);
+        intake.TempIntake_setSpeed(0);
     }
     
 }

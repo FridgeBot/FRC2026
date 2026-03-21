@@ -8,6 +8,8 @@ import static edu.wpi.first.units.Units.Rotations;
 import static edu.wpi.first.units.Units.RotationsPerSecond;
 import static edu.wpi.first.units.Units.Volts;
 
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
@@ -19,6 +21,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -39,11 +42,15 @@ public class Intake extends SubsystemBase{
     private final RelativeEncoder Shooter_encoder = ShooterMotor.getEncoder();
     private final RelativeEncoder Indexer_Encoder = Indexer.getEncoder();
     private final RelativeEncoder Intake_Encoder = Intake.getEncoder();
+    private final TalonSRX TempIntake = new TalonSRX(10);
     private final Solenoid ExstendIntake_solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
     private final Solenoid DropIntake_Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 1);
-    
+
     private final Compressor Compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     
+    public void TempIntake_setSpeed(double speed){
+        TempIntake.set(TalonSRXControlMode.PercentOutput, speed);
+    }
 
     public double getTempShooter_speed(){
         return TempEncoder.getVelocity();
@@ -90,6 +97,7 @@ public class Intake extends SubsystemBase{
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Current RPM", getShooter_motorSpeed());
+        SmartDashboard.putNumber("TempRPM", getTempShooter_speed());
     }
     
 
