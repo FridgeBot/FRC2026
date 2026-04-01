@@ -1,3 +1,0 @@
-alias gpSub='cd ~/Desktop/FRC2026/tools/ && ./SubmodulePush.sh'
-alias mvo='~/Desktop/FRC2026/MainRobot/src/main/java/frc/robot/submodule && git checkout Orange'
-alias mvb='~/Desktop/FRC2026/MainRobot/src/main/java/frc/robot/submodule && git checkout Black'
