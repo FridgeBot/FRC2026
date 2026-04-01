@@ -4,7 +4,7 @@ TOOLS
     
   copyAlias---This is a coppy of all of our Alias for git from our bashrc.
     
-  deleteAutos.sh---This is to delete the autos & paths that are staying on the dashboard after they have been renamed or deleted.
+  deleteAutos.sh---This is to delete the autos & paths that are staying on the dashboard after they have been renamed or deleted. NOTE you must be connected by USB to the rio to run.
 
 -ELASTIC LAYOUTS-
   elastic-layout.json---This is our standard layout at a compatition
