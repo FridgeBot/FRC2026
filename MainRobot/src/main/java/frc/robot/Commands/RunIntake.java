@@ -17,17 +17,17 @@ public class RunIntake extends Command {
     
     @Override
     public void execute() {
-        // intakesub.Shooter_motorSpeed(0.875);
-            intakesub.Indexer_motorSpeed(-0.8);
-            intakesub.Intake_motorSpeed(-0.8);
+        // intakesub.setShooter_motorSpeed(0.875);
+            intakesub.setIndexer_motorSpeed(-0.8);
+            intakesub.setIntake_motorSpeed(-0.8);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        // intakesub.Shooter_motorSpeed(0);
-        intakesub.Indexer_motorSpeed(0);
-        intakesub.Intake_motorSpeed(0);
+        // intakesub.setShooter_motorSpeed(0);
+        intakesub.setIndexer_motorSpeed(0);
+        intakesub.setIntake_motorSpeed(0);
     }
 
 

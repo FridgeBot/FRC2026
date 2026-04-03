@@ -20,12 +20,12 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.Commands.AlineShooter;
-import frc.robot.Commands.ExstendsIntake;
 import frc.robot.Commands.Rotate;
 import frc.robot.Commands.RunIntake;
 import frc.robot.Commands.ShootWithVelocityControl;
 import frc.robot.Commands.ShooterMech;
 import frc.robot.submodule.generated.TunerConstants;
+import frc.robot.submodule.subCommands.ExstendsIntake;
 import frc.robot.submodule.subsystems.CommandSwerveDrivetrain;
 import frc.robot.submodule.subsystems.Intake;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -78,7 +78,7 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("ShooterMech", new ShooterMech(intakeSubsystem));
         NamedCommands.registerCommand("RunIntake", new RunIntake(intakeSubsystem));
-        NamedCommands.registerCommand("Intake Out", intakeSubsystem.Intakeforward());
+        NamedCommands.registerCommand("Intake Out", intakeSubsystem.IntakePrep());
 
     //Does say there is an issue however build is successful.
     //If any further analysis further comes for the issue, I "fixed" the issue using an import on lines 30. - CS

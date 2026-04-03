@@ -21,12 +21,12 @@ public ShooterMech(Intake shooterSubsystem){
 public void execute(){
    if(subSystem.Exstended_SolenoidState()){
    
-    subSystem.Shooter_motorVoltage(Voltage.ofBaseUnits(7,Volt));
+    subSystem.setShooter_motorVoltage(Voltage.ofBaseUnits(7,Volt));
 
     if(Math.abs(subSystem.getShooter_motorSpeed()) > 3350){
         
-        subSystem.Indexer_motorSpeed(0.3);
-        subSystem.Intake_motorSpeed(-0.3);
+        subSystem.setIndexer_motorSpeed(0.3);
+        subSystem.setIntake_motorSpeed(-0.3);
         
         
 
@@ -35,9 +35,9 @@ public void execute(){
 
     else{
 
-    subSystem.Shooter_motorSpeed(0);
-    subSystem.Indexer_motorSpeed(0);
-    subSystem.Intake_motorSpeed(0);
+    subSystem.setShooter_motorSpeed(0);
+    subSystem.setIndexer_motorSpeed(0);
+    subSystem.setIntake_motorSpeed(0);
 
     }
 
@@ -46,9 +46,9 @@ public void execute(){
 }
 @Override
 public void end(boolean interrupted){
-    subSystem.Shooter_motorSpeed(0);
-    subSystem.Indexer_motorSpeed(0);
-    subSystem.Intake_motorSpeed(0);
+    subSystem.setShooter_motorSpeed(0);
+    subSystem.setIndexer_motorSpeed(0);
+    subSystem.setIntake_motorSpeed(0);
 }
 
 

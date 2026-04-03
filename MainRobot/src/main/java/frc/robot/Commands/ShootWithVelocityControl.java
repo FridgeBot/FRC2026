@@ -73,10 +73,10 @@ public class ShootWithVelocityControl extends Command {
         feedForwardValue = feedforwardCalculator.calculate(targetRPM);
         pidValue = pidCalculator.calculate(currentRPM, targetRPM);
 
-        intake.Shooter_motorVoltage(Volts.of(feedForwardValue + pidValue));
+        intake.setShooter_motorVoltage(Volts.of(feedForwardValue + pidValue));
 
         if(Math.abs(intake.getShooter_motorSpeed() - targetRPM) <= marginOfError && targetRPM != 0){
-            intake.Indexer_motorSpeed(0.85);
+            intake.setIndexer_motorSpeed(0.85);
         }
     
         SmartDashboard.putBoolean("okToShoot", Math.abs(intake.getShooter_motorSpeed() - targetRPM) <= marginOfError && targetRPM != 0);
@@ -85,8 +85,8 @@ public class ShootWithVelocityControl extends Command {
 
     @Override
     public void end(boolean interrupted) {
-        intake.Shooter_motorVoltage(Volts.zero());
-        intake.Indexer_motorSpeed(0);
+        intake.setShooter_motorVoltage(Volts.zero());
+        intake.setIndexer_motorSpeed(0);
     }
     
 }
