@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.submodule.subsystems.Intake;
+import frc.robot.submodule.subsystems.Intake.MotorState;
 
 public class ShootWithVelocityControl extends Command {
     private Intake intake;
@@ -76,7 +77,7 @@ public class ShootWithVelocityControl extends Command {
         intake.setShooter_motorVoltage(Volts.of(feedForwardValue + pidValue));
 
         if(Math.abs(intake.getShooter_motorSpeed() - targetRPM) <= marginOfError && targetRPM != 0){
-            intake.setIndexer_motorSpeed(0.85);
+            intake.setIndexer_motorSpeed(MotorState.forward);
         }
     
         SmartDashboard.putBoolean("okToShoot", Math.abs(intake.getShooter_motorSpeed() - targetRPM) <= marginOfError && targetRPM != 0);
@@ -86,7 +87,7 @@ public class ShootWithVelocityControl extends Command {
     @Override
     public void end(boolean interrupted) {
         intake.setShooter_motorVoltage(Volts.zero());
-        intake.setIndexer_motorSpeed(0);
+        intake.setIndexer_motorSpeed(MotorState.off);
     }
     
 }

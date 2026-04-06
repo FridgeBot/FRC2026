@@ -7,6 +7,7 @@ import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.submodule.subsystems.Intake;
+import frc.robot.submodule.subsystems.Intake.MotorState;
 
 public class ShooterMech extends Command{
 
@@ -25,8 +26,8 @@ public void execute(){
 
     if(Math.abs(subSystem.getShooter_motorSpeed()) > 3350){
         
-        subSystem.setIndexer_motorSpeed(0.3);
-        subSystem.setIntake_motorSpeed(-0.3);
+        subSystem.setIndexer_motorSpeed(MotorState.forward);
+        subSystem.setIntake_motorSpeed(MotorState.forward);
         
         
 
@@ -35,9 +36,9 @@ public void execute(){
 
     else{
 
-    subSystem.setShooter_motorSpeed(0);
-    subSystem.setIndexer_motorSpeed(0);
-    subSystem.setIntake_motorSpeed(0);
+    subSystem.setShooter_motorSpeed(MotorState.off);
+    subSystem.setIndexer_motorSpeed(MotorState.off);
+    subSystem.setIntake_motorSpeed(MotorState.off);
 
     }
 
@@ -46,9 +47,9 @@ public void execute(){
 }
 @Override
 public void end(boolean interrupted){
-    subSystem.setShooter_motorSpeed(0);
-    subSystem.setIndexer_motorSpeed(0);
-    subSystem.setIntake_motorSpeed(0);
+    subSystem.setShooter_motorSpeed(MotorState.off);
+    subSystem.setIndexer_motorSpeed(MotorState.off);
+    subSystem.setIntake_motorSpeed(MotorState.off);
 }
 
 

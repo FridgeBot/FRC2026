@@ -2,6 +2,7 @@ package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.submodule.subsystems.Intake;
+import frc.robot.submodule.subsystems.Intake.MotorState;
 
 
 
@@ -18,16 +19,16 @@ public class RunIntake extends Command {
     @Override
     public void execute() {
         // intakesub.setShooter_motorSpeed(0.875);
-            intakesub.setIndexer_motorSpeed(-0.8);
-            intakesub.setIntake_motorSpeed(-0.8);
+            intakesub.setIndexer_motorSpeed(MotorState.forward);
+            intakesub.setIntake_motorSpeed(MotorState.backward);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         // intakesub.setShooter_motorSpeed(0);
-        intakesub.setIndexer_motorSpeed(0);
-        intakesub.setIntake_motorSpeed(0);
+        intakesub.setIndexer_motorSpeed(MotorState.off);
+        intakesub.setIntake_motorSpeed(MotorState.off);
     }
 
 
