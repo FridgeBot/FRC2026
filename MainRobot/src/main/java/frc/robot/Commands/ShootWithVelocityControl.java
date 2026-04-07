@@ -79,6 +79,7 @@ public class ShootWithVelocityControl extends Command {
         if(Math.abs(intake.getShooter_motorSpeed() - targetRPM) <= marginOfError && targetRPM != 0){
             intake.setIndexer_motorSpeed(MotorState.forward);
             intake.setIntake_motorSpeed(MotorState.forward);
+            intake.setFeedShooter_motorSpeed(MotorState.forward);
         }
     
         SmartDashboard.putBoolean("okToShoot", Math.abs(intake.getShooter_motorSpeed() - targetRPM) <= marginOfError && targetRPM != 0);
@@ -90,6 +91,7 @@ public class ShootWithVelocityControl extends Command {
         intake.setShooter_motorVoltage(Volts.zero());
         intake.setIndexer_motorSpeed(MotorState.off);
         intake.setIntake_motorSpeed(MotorState.off);
+        intake.setFeedShooter_motorSpeed(MotorState.off);
     }
     
 }
