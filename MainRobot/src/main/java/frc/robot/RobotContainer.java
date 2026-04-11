@@ -139,10 +139,12 @@ public class RobotContainer {
         joystick.button(2).whileTrue(new ShooterMech(intakeSubsystem));
         joystick.button(5).toggleOnTrue(new Rotate(drivetrain, joystick, MaxSpeed, MaxAngularRate));
 
-        Operator.y().toggleOnTrue(new ExstendIntake(intakeSubsystem));
+        // Operator.y().toggleOnTrue(new ExstendIntake(intakeSubsystem));
         Operator.rightBumper().whileTrue(intakeSubsystem.OutAndDrop());
         Operator.leftBumper().whileTrue(intakeSubsystem.UpAndIn());
-        Operator.a().toggleOnTrue(new ShootWithVelocityControl(intakeSubsystem));
+        Operator.x().toggleOnTrue(intakeSubsystem.IntakeOnly());
+        // Operator.a().toggleOnTrue(new ShootWithVelocityControl(intakeSubsystem));
+        // Operator.start().whileTrue(intakeSubsystem.TESTMOTOR());
         }
 
 
