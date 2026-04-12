@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.514436536180309,
+        "x": 3.014,
         "y": 0.663
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.7084598221203495,
-        "y": 0.5053454266028758
+        "x": 3.233866815164607,
+        "y": 0.5440101534189887
       },
       "isLocked": true,
-      "linkedName": "RStartTrench"
+      "linkedName": "RTrenchEndFinal"
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 1.992
       },
       "prevControl": {
-        "x": 2.3746143128776636,
-        "y": 2.1454238916181017
+        "x": 2.481620089991073,
+        "y": 2.2250911235263544
       },
       "nextControl": null,
       "isLocked": true,
@@ -48,7 +48,7 @@
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

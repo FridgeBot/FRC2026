@@ -12,15 +12,15 @@
         "y": 6.149324918305632
       },
       "isLocked": true,
-      "linkedName": "ShootLeft"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.514436536180309,
+        "x": 3.514,
         "y": 7.406
       },
       "prevControl": {
-        "x": 3.574014619855767,
+        "x": 3.573578083675458,
         "y": 7.154801861988031
       },
       "nextControl": null,

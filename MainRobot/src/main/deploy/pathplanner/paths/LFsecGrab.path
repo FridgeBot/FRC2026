@@ -3,24 +3,24 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.7,
-        "y": 7.406
+        "x": 6.65,
+        "y": 6.2223358585858595
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.677639383155398,
-        "y": 6.127663107947805
+        "x": 6.627639383155398,
+        "y": 4.943998966533665
       },
       "isLocked": true,
-      "linkedName": "LTrenchEnd"
+      "linkedName": "LMidleManEnd"
     },
     {
       "anchor": {
-        "x": 6.7,
+        "x": 6.65,
         "y": 4.5
       },
       "prevControl": {
-        "x": 6.720676156583631,
+        "x": 6.670676156583631,
         "y": 5.65123368920522
       },
       "nextControl": null,

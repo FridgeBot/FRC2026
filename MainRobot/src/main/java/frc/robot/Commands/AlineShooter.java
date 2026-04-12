@@ -91,7 +91,7 @@ public class AlineShooter extends Command {
 
             Rotation2d targetAngle = tarPosition2d.minus(CurrentPose.getTranslation()).getAngle();
 
-            targetAngle = targetAngle.plus(Rotation2d.k180deg);
+            // targetAngle = targetAngle.plus(Rotation2d.k180deg);
 
             double distanceFromPose = tarPosition2d.getDistance(CurrentPose.getTranslation());
 

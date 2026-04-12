@@ -9,9 +9,9 @@
           "data": {
             "commands": [
               {
-                "type": "wait",
+                "type": "path",
                 "data": {
-                  "waitTime": 1.0
+                  "pathName": "ForwardLeftTrench"
                 }
               },
               {
@@ -26,19 +26,38 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ForwardLeftTrench"
+            "pathName": "LMiddleMan"
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "LFsecGrab"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "RunIntake"
+                }
+              }
+            ]
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "LFFirstGrab"
+            "pathName": "LBsecGrab"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "LBFirstGrab"
+            "pathName": "LBMidleMan"
           }
         },
         {
@@ -82,6 +101,55 @@
           "type": "path",
           "data": {
             "pathName": "ForwardLeftTrench"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "LMiddleMan"
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "LFsecGrab"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "LBsecGrab"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "LBMidleMan"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "LBackwardTrench"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BackToShootL"
           }
         }
       ]

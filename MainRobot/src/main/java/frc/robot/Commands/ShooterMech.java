@@ -16,7 +16,7 @@ private final Intake subSystem;
 public ShooterMech(Intake shooterSubsystem){
     subSystem = shooterSubsystem;
 
-    addRequirements(subSystem);
+    // addRequirements(subSystem);
 }
 
 @Override
@@ -24,12 +24,12 @@ public void execute(){
    if(subSystem.Exstended_SolenoidState()){
    
     subSystem.setShooter_motorVoltage(Voltage.ofBaseUnits(-7,Volt));
+    subSystem.setIntake_motorSpeed(MotorState.forward);
 
     if(Math.abs(subSystem.getShooter_motorSpeed()) > 3350){
         
         subSystem.setIndexer_motorSpeed(MotorState.forward);
         subSystem.setFeedShooter_motorSpeed(MotorState.forward);
-        // subSystem.setIntake_motorSpeed(MotorState.forward);
         
         
 
@@ -41,7 +41,7 @@ public void execute(){
     subSystem.setShooter_motorSpeed(MotorState.off);
     subSystem.setIndexer_motorSpeed(MotorState.off);
     subSystem.setFeedShooter_motorSpeed(MotorState.off);
-    // subSystem.setIntake_motorSpeed(MotorState.off);
+    subSystem.setIntake_motorSpeed(MotorState.off);
 
     }
 
@@ -52,7 +52,7 @@ public void execute(){
 public void end(boolean interrupted){
     subSystem.setShooter_motorSpeed(MotorState.off);
     subSystem.setIndexer_motorSpeed(MotorState.off);
-    subSystem.setIntake_motorSpeed(MotorState.off);
+    subSystem.setFeedShooter_motorSpeed(MotorState.off);
 }
 
 

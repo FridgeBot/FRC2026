@@ -9,15 +9,15 @@
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "path",
                 "data": {
-                  "name": "Intake Out"
+                  "pathName": "ForwardRTrenchight"
                 }
               },
               {
-                "type": "wait",
+                "type": "named",
                 "data": {
-                  "waitTime": 1.0
+                  "name": "Intake Out"
                 }
               }
             ]
@@ -26,19 +26,38 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ForwardRTrenchight"
+            "pathName": "RFMiddleMan"
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "RFSecondGrab"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "RunIntake"
+                }
+              }
+            ]
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RFFirstGrab"
+            "pathName": "RBsecindGrab"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RBFirstGrab"
+            "pathName": "RBMiddleMan"
           }
         },
         {
@@ -82,6 +101,55 @@
           "type": "path",
           "data": {
             "pathName": "ForwardRTrenchight"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RFMiddleMan"
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "RFSecondGrab"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "RunIntake"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RBsecindGrab"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RBMiddleMan"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RBackwardTrench"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BackToShootR"
           }
         }
       ]

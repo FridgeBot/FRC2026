@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.514436536180309,
+        "x": 3.014,
         "y": 7.406
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.246285324501776,
-        "y": 7.076002125549261
+        "x": 2.961384164026127,
+        "y": 7.161599562592922
       },
       "isLocked": true,
-      "linkedName": "LStartTrench"
+      "linkedName": "LTrenchEndBack"
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 6.076
       },
       "prevControl": {
-        "x": 3.8085223190355912,
-        "y": 7.263393123548326
+        "x": 2.807813506751116,
+        "y": 6.159018010297412
       },
       "nextControl": null,
       "isLocked": true,
@@ -48,7 +48,7 @@
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

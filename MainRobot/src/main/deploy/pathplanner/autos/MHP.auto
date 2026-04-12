@@ -5,6 +5,12 @@
     "data": {
       "commands": [
         {
+          "type": "path",
+          "data": {
+            "pathName": "MToHP"
+          }
+        },
+        {
           "type": "deadline",
           "data": {
             "commands": [
@@ -24,9 +30,9 @@
           }
         },
         {
-          "type": "path",
+          "type": "wait",
           "data": {
-            "pathName": "MToHP"
+            "waitTime": 2.0
           }
         },
         {
@@ -67,9 +73,22 @@
           }
         },
         {
-          "type": "path",
+          "type": "deadline",
           "data": {
-            "pathName": "RFFirstGrab"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "RFFirstGrab"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "RunIntake"
+                }
+              }
+            ]
           }
         },
         {
@@ -88,6 +107,12 @@
           "type": "path",
           "data": {
             "pathName": "BackToShootR"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterMech"
           }
         }
       ]

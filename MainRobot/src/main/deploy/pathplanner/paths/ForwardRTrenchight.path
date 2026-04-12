@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 6.5,
+        "x": 6.65,
         "y": 0.663
       },
       "prevControl": {
-        "x": 5.5,
+        "x": 5.65,
         "y": 0.6630000000000001
       },
       "nextControl": null,
       "isLocked": true,
-      "linkedName": "RTrenchEnd"
+      "linkedName": null
     }
   ],
   "rotationTargets": [
@@ -47,7 +47,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": null,

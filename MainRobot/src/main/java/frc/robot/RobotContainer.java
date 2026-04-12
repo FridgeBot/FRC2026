@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.Commands.AlineShooter;
+import frc.robot.Commands.IntakeWithVelocityControl;
 import frc.robot.Commands.Rotate;
 import frc.robot.Commands.ShootWithVelocityControl;
 import frc.robot.Commands.ShooterMech;
@@ -143,8 +144,10 @@ public class RobotContainer {
         Operator.rightBumper().whileTrue(intakeSubsystem.OutAndDrop());
         Operator.leftBumper().whileTrue(intakeSubsystem.UpAndIn());
         Operator.x().toggleOnTrue(intakeSubsystem.IntakeOnly());
-        // Operator.a().toggleOnTrue(new ShootWithVelocityControl(intakeSubsystem));
-        // Operator.start().whileTrue(intakeSubsystem.TESTMOTOR());
+        Operator.b().whileTrue(intakeSubsystem.intakeOut());
+        // Operator.start().toggleOnTrue(new IntakeWithVelocityControl(intakeSubsystem));
+        Operator.start().whileTrue(intakeSubsystem.TESTMOTOR());
+        Operator.a().whileTrue(intakeSubsystem.FULL_INTAKE());
         }
 
 
